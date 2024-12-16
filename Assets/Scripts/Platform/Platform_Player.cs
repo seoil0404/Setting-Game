@@ -9,10 +9,15 @@ public class Platform_Player : MonoBehaviour
     readonly float baseMoveSpeedMultiplier = 2.5f;
     readonly float baseJumpPowerMultiplier = 2.5f;
     readonly float toMaxJump = 0.25f; // how many wait second to get max power jump
-    private bool isJumping = false;
+    [SerializeField] private bool isJumping = false;
 
     public bool IsStable
     {
+        get
+        {
+            if (playerRigidbody.constraints == RigidbodyConstraints2D.FreezeRotation) return true;
+            else return false;
+        }
         set
         {
             if(value)

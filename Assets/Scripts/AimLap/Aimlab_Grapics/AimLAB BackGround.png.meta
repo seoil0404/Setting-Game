@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      AimLAB BackGround_0: -3148835454495338715
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
