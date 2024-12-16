@@ -5,10 +5,26 @@ public class Platform_Player : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D playerRigidbody;
     [SerializeField] private Platform_SettingData platformSettingData;
+    
     readonly float baseMoveSpeedMultiplier = 2.5f;
     readonly float baseJumpPowerMultiplier = 2.5f;
     readonly float toMaxJump = 0.25f; // how many wait second to get max power jump
     private bool isJumping = false;
+
+    public bool IsStable
+    {
+        set
+        {
+            if(value)
+            {
+                playerRigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
+            }
+            else
+            {
+                playerRigidbody.constraints = RigidbodyConstraints2D.None;
+            }
+        }
+    }
 
     // Update is called once per frame
     void Update()
