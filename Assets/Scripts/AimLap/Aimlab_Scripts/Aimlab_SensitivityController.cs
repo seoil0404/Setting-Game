@@ -3,8 +3,8 @@ using UnityEngine.UI;
 
 public class Aimlab_SensitivityController : MonoBehaviour
 {
-    public Slider sensitivitySlider; // UI 슬라이더
-    public Aimlab_MouseSensitivity mouseSensitivity; // 감도 조절 클래스
+    public Slider sensitivitySlider; 
+    public Aimlab_MouseSensitivity mouseSensitivity; 
 
     void Start()
     {
@@ -13,6 +13,6 @@ public class Aimlab_SensitivityController : MonoBehaviour
 
     void UpdateSensitivity(float value)
     {
-        mouseSensitivity.sensitivity = value; // 슬라이더 값으로 감도 업데이트
+        mouseSensitivity.sensitivity = value; 
     }
 }
