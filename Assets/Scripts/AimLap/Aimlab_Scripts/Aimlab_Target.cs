@@ -14,6 +14,6 @@ public class Aimlab_Target : MonoBehaviour
     private void OnMouseDown()
     {
        
-        HandleHit();
+        HandleHit(); 
     }
 }

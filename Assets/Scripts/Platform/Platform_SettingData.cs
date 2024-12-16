@@ -8,7 +8,6 @@ public class Platform_SettingData : ScriptableObject
 {
     [SerializeField] private float backgroundMusicScale;
     [SerializeField] private float effectSoundScale;
-    [SerializeField] private bool isInvincible;
     [SerializeField] private float playerMoveSpeed;
     [SerializeField] private bool isGravity;
     [SerializeField] private bool isCameraFollow;
@@ -50,17 +49,6 @@ public class Platform_SettingData : ScriptableObject
             if (value < 0) this.effectSoundScale = 0;
             else if (value > 10) this.effectSoundScale = 10;
             else this.effectSoundScale = value;
-        }
-    }
-    public bool IsInvincible
-    {
-        get
-        {
-            return this.isInvincible;
-        }
-        set
-        {
-            isInvincible = value;
         }
     }
     public float PlayerMoveSpeed
