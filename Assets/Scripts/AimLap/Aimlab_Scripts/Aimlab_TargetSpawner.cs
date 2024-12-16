@@ -43,7 +43,6 @@ public class Aimlab_TargetSpawner : MonoBehaviour
         GameObject newTarget = Instantiate(targetPrefab, randomPosition, Quaternion.identity);
         targets[index] = newTarget;
 
-        // 타겟이 클릭되었을 때의 이벤트 처리
-        newTarget.GetComponent<Aimlab_Target>().OnTargetClicked += () => TargetClicked(newTarget);
+      
     }
 }

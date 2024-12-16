@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1528915178099623015}
   - component: {fileID: 1422037551872590212}
   - component: {fileID: 3125287127765274341}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Aimlab_Target
   m_TagString: Target Layer
   m_Icon: {fileID: 0}
