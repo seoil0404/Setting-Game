@@ -150,7 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetPrefab: {fileID: 8801276287709843198, guid: 1f507b01ca43d2e458030b88c1d19a0f, type: 3}
   targetCount: 4
-  spawnAreaMin: {x: 0, y: 0}
+  spawnAreaMin: {x: -0.8, y: 0}
   spawnAreaMax: {x: 0, y: 0}
 --- !u!4 &143353236
 Transform:
