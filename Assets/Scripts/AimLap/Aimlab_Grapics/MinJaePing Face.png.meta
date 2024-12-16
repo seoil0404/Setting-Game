@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      MinJaePing Face_0: -9068820878747935827
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
