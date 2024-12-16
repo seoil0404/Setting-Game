@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Aimlab_MouseSensitivity : MonoBehaviour
 {
-    public float sensitivity = 1.0f; // 기본 감도
+    public float sensitivity = 1.0f; 
 
     void Update()
     {

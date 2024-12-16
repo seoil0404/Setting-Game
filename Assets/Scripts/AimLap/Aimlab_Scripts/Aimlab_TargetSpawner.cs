@@ -1,49 +1,98 @@
+using System.Collections;
 using UnityEngine;
 
 public class Aimlab_TargetSpawner : MonoBehaviour
 {
-    public GameObject targetPrefab; // 타겟 프리팹
-    public int targetCount = 4; // 화면에 표시될 타겟 개수
-    public Vector2 spawnAreaMin; // 스폰 영역의 최소값 (왼쪽 아래)
-    public Vector2 spawnAreaMax; // 스폰 영역의 최대값 (오른쪽 위)
+    public GameObject targetPrefab;   
+    public int maxTargets = 6;        
+    public Vector2 spawnAreaMin;      
+    public Vector2 spawnAreaMax;       
+    public float spawnInterval = 0.5f; 
 
-    private GameObject[] targets;
+    private GameObject[] targets;      
 
     void Start()
     {
-        targets = new GameObject[targetCount];
-        SpawnInitialTargets();
+        targets = new GameObject[maxTargets];
+        StartCoroutine(SpawnTargetsContinuously());
     }
 
-    void SpawnInitialTargets()
+    // 일정 시간 간격으로 타겟을 생성
+    IEnumerator SpawnTargetsContinuously()
     {
-        for (int i = 0; i < targetCount; i++)
+        while (true)
         {
-            SpawnNewTarget(i);
-        }
-    }
-
-    public void TargetClicked(GameObject target)
-    {
-        int index = System.Array.IndexOf(targets, target);
-        if (index != -1)
-        {
-            Destroy(target); // 기존 타겟 제거
-            SpawnNewTarget(index); // 새로운 타겟 생성
+            for (int i = 0; i < maxTargets; i++)
+            {
+                if (targets[i] == null) 
+                {
+                    SpawnNewTarget(i);
+                    yield return new WaitForSeconds(spawnInterval); 
+                }
+            }
+            yield return null; 
         }
     }
 
     void SpawnNewTarget(int index)
     {
+       
         Vector2 randomPosition = new Vector2(
             Random.Range(spawnAreaMin.x, spawnAreaMax.x),
             Random.Range(spawnAreaMin.y, spawnAreaMax.y)
         );
 
+        
         GameObject newTarget = Instantiate(targetPrefab, randomPosition, Quaternion.identity);
         targets[index] = newTarget;
 
-        // 타겟이 클릭되었을 때의 이벤트 처리
-        newTarget.GetComponent<Aimlab_Target>().OnTargetClicked += () => TargetClicked(newTarget);
+        
+        StartCoroutine(FadeAndDestroyTarget(newTarget, index));
+    }
+
+    
+    IEnumerator FadeAndDestroyTarget(GameObject target, int index)
+    {
+        if (target == null) yield break; 
+
+        SpriteRenderer renderer = target.GetComponent<SpriteRenderer>();
+        if (renderer == null)
+        {
+            Debug.LogError("Target prefab must have a SpriteRenderer component.");
+            yield break;
+        }
+
+        float fadeDuration = 1.5f; 
+        float elapsedTime = 0f;
+
+        Color initialColor = renderer.color;
+
+        while (elapsedTime < fadeDuration)
+        {
+            if (target == null) yield break; 
+            elapsedTime += Time.deltaTime;
+
+            float alpha = Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration);
+            renderer.color = new Color(initialColor.r, initialColor.g, initialColor.b, alpha);
+            yield return null;
+        }
+
+  
+        if (target != null)
+        {
+            Destroy(target);
+            targets[index] = null;
+        }
+    }
+
+
+    public void TargetClicked(GameObject target)
+    {
+        int index = System.Array.IndexOf(targets, target);
+        if (index != -1 && targets[index] != null)
+        {
+            Destroy(target); 
+            targets[index] = null; 
+        }
     }
 }
