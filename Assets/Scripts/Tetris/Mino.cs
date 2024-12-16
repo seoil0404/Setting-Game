@@ -30,7 +30,7 @@ public class Mino : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyUp(KeyCode.S)) transform.position += new Vector3(0, -m_dropValue, 0);
+        if(Input.GetKey(KeyCode.S)) transform.position += new Vector3(0, -m_dropValue, 0);
         if(Input.GetKeyUp(KeyCode.D)) transform.position += new Vector3(m_moveValue, 0, 0);
         if(Input.GetKeyUp(KeyCode.A)) transform.position += new Vector3(-m_moveValue, 0, 0);
         
