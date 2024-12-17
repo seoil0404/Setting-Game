@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: a922103280ec7464b9ee11030d9047d8
+guid: 16873ae94d862254f97610e15df27825
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4655241114753729403
-    second: Tetris BackGround_0
+      213: -4722285575611752452
+    second: AimLAB BulletCount_0
+  - first:
+      213: 3290022920813526035
+    second: AimLAB BulletCount_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +129,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Tetris BackGround_0
+      name: AimLAB BulletCount_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1920
-        height: 1080
+        x: 1354
+        y: 59
+        width: 139
+        height: 165
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +144,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b7380bc112dba9040800000000000000
-      internalID: 4655241114753729403
+      spriteID: cffd5b9e942177eb0800000000000000
+      internalID: -4722285575611752452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AimLAB BulletCount_1
+      rect:
+        serializedVersion: 2
+        x: 1381
+        y: 6
+        width: 522
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31cbbf94a6288ad20800000000000000
+      internalID: 3290022920813526035
       vertices: []
       indices: 
       edges: []
@@ -160,8 +185,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Tetris BackGround_0: 4655241114753729403
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
