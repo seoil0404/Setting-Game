@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Platformer Ground Floating_0: 1439749520676879671
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

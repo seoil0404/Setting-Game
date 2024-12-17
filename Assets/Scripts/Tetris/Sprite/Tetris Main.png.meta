@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 2181b68b6eaef4b44978ec7e728e23ce
+guid: ae4bf4815a6451844aa2fd6ab488ad71
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1035660097726671999
-    second: Tetris MainGame Place_0
+      213: 2767927404053113096
+    second: Tetris DogDDongBug Tile_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Tetris MainGame Place_0
+      name: Tetris DogDDongBug Tile_0
       rect:
         serializedVersion: 2
-        x: 576
-        y: 63
-        width: 828
-        height: 970
+        x: 0
+        y: 0
+        width: 400
+        height: 800
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 18394f6d0a890a1f0800000000000000
-      internalID: -1035660097726671999
+      spriteID: 809a7a21f47a96620800000000000000
+      internalID: 2767927404053113096
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Tetris MainGame Place_0: -1035660097726671999
+      Tetris DogDDongBug Tile_0: 2767927404053113096
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -422,7 +422,19 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Platformer Sun_0: -5839158772950860403
+      Platformer Sun_1: 954534720980097698
+      Platformer Sun_10: 3502248042398858057
+      Platformer Sun_11: 7161628721582798485
+      Platformer Sun_2: 1467103631295402100
+      Platformer Sun_3: 1517551579416492813
+      Platformer Sun_4: 9205067075396343337
+      Platformer Sun_5: 3220289078626956554
+      Platformer Sun_6: 7890928590546715300
+      Platformer Sun_7: 2878872888506510688
+      Platformer Sun_8: -7909386854493732842
+      Platformer Sun_9: -4871856792158273785
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

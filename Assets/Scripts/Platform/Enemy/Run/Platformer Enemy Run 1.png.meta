@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Platformer Enemy Run 1_0: 5379749475562084005
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

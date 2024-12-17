@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Platformer Enemy Idle 2_0: 8531622411872693465
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
