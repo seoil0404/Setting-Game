@@ -80,7 +80,7 @@ public class Aimlab_CrosshairController : MonoBehaviour
 
         if (hit.collider != null)
         {
-            Debug.Log($"Hit Target: {hit.collider.gameObject.name}");
+            
 
             
             Aimlab_Target target = hit.collider.GetComponent<Aimlab_Target>();
@@ -92,3 +92,4 @@ public class Aimlab_CrosshairController : MonoBehaviour
         }
     }
 }
+    

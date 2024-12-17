@@ -39,7 +39,7 @@ public class Aimlab_Timer : MonoBehaviour
 
     void OnTimerEnd()
     {
-        Debug.Log("타이머 종료!");
+        
             
     }
 }
