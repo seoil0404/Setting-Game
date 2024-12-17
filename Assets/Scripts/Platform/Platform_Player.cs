@@ -14,7 +14,8 @@ public class Platform_Player : MonoBehaviour
     readonly float baseJumpPowerMultiplier = 2.5f;
     readonly float toMaxJump = 0.25f; // how many wait second to get max power jump
 
-    private int health;
+    private int health = 1;
+    private bool isAcceptMove = true;
 
     public int Health
     {
@@ -49,21 +50,26 @@ public class Platform_Player : MonoBehaviour
         health--;
         if (health == 0) gameManager.Defeat();
     }
-    
-    public enum JumpPadDirection
+
+    public void OnJumpPad(float jumpTime, Vector3 direction)
     {
-        Left, Right
+        isAcceptMove = false;
+
+        playerRigidbody.linearVelocity = direction;
+
+        StartCoroutine(AcceptMove(jumpTime));
     }
 
-    public void OnJumpPad()
+    IEnumerator AcceptMove(float jumpTime)
     {
-
+        yield return new WaitForSeconds(jumpTime);
+        isAcceptMove = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        HandleMove();
+        if(isAcceptMove) HandleMove();
     }
 
     private void HandleMove()
@@ -112,7 +118,7 @@ public class Platform_Player : MonoBehaviour
 
         stack += Time.deltaTime;
         
-        if (Input.GetKey(platformSettingData.keySetting.jumpKey) && isJumping == true)
+        if (Input.GetKey(platformSettingData.keySetting.jumpKey) && isJumping == true && isAcceptMove)
         {
             playerRigidbody.linearVelocityY = platformSettingData.PlayerJumpPower * baseJumpPowerMultiplier;
             if(stack < toMaxJump) StartCoroutine(HandleJump(stack));
@@ -122,5 +128,9 @@ public class Platform_Player : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         isJumping = false;
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        isJumping = true;
     }
 }

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: ac0bb5bb268ac1348b32c4eaa97c8006
+guid: 24a7e48db7b863644a13e9a70cda3ba1
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 623879662852683099
-    second: UI Setting Button_0
+      213: 3118762309936733884
+    second: Platformer Needle_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -109,30 +109,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: iOS
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: UI Setting Button_0
+      name: Platformer Needle_0
       rect:
         serializedVersion: 2
-        x: 48
-        y: 39
-        width: 101
-        height: 98
+        x: 23
+        y: 35
+        width: 131
+        height: 73
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b55bce67f3778a800800000000000000
-      internalID: 623879662852683099
+      spriteID: cbed7a60cc1184b20800000000000000
+      internalID: 3118762309936733884
       vertices: []
       indices: 
       edges: []
@@ -160,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      UI Setting Button_0: 623879662852683099
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
