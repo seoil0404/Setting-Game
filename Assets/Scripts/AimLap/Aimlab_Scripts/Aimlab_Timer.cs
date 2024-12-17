@@ -12,7 +12,7 @@ public class Aimlab_Timer : MonoBehaviour
    
         UpdateTimerText();  
     }
-
+        
     void Update()
     {
         if (timerRunning)

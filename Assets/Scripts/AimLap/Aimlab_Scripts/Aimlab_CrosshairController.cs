@@ -58,20 +58,19 @@ public class Aimlab_CrosshairController : MonoBehaviour
         }
     }
 
-    void UpdateCrosshairLines()
+    public void UpdateCrosshairLines()
     {
-        
-        horizontalLine.SetPosition(0, crosshairPosition + new Vector3(-length / 2, 0, 0)); 
-        horizontalLine.SetPosition(1, crosshairPosition + new Vector3(length / 2, 0, 0));  
+        horizontalLine.SetPosition(0, crosshairPosition + new Vector3(-length / 2, 0, 0));
+        horizontalLine.SetPosition(1, crosshairPosition + new Vector3(length / 2, 0, 0));
         horizontalLine.startWidth = thickness;
         horizontalLine.endWidth = thickness;
 
-        
-        verticalLine.SetPosition(0, crosshairPosition + new Vector3(0, -length / 2, 0)); 
-        verticalLine.SetPosition(1, crosshairPosition + new Vector3(0, length / 2, 0)); 
+        verticalLine.SetPosition(0, crosshairPosition + new Vector3(0, -length / 2, 0));
+        verticalLine.SetPosition(1, crosshairPosition + new Vector3(0, length / 2, 0));
         verticalLine.startWidth = thickness;
         verticalLine.endWidth = thickness;
     }
+
 
     void CheckHit()
     {
