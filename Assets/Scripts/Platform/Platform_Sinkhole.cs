@@ -4,6 +4,7 @@ using UnityEngine.UIElements;
 public class Platform_Sinkhole : MonoBehaviour
 {
     [SerializeField] private SinkholeState sinkHoleState;
+    [SerializeField] private Platform_SettingData settingData;
 
     [Header("Split")]
     [SerializeField] private GameObject leftObject;
@@ -34,7 +35,7 @@ public class Platform_Sinkhole : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        if(collision.gameObject.layer == LayerMask.NameToLayer("Player") && settingData.IsSinkholeGenerate)
         {
             switch(sinkHoleState)
             {
