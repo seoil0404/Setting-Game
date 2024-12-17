@@ -62,7 +62,7 @@ public class Aimlab_TargetSpawner : MonoBehaviour
             yield break;
         }
 
-        float fadeDuration = 1.5f; 
+        float fadeDuration = 2.5f; 
         float elapsedTime = 0f;
 
         Color initialColor = renderer.color;
