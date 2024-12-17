@@ -32,14 +32,37 @@ public class Platform_Enemy : MonoBehaviour
         {
             case MoveDirection.Left:
                 enemyRigidbody.linearVelocityX = -moveSpeed;
+                moveDirection = MoveDirection.Right;
                 break;
             case MoveDirection.Right:
                 enemyRigidbody.linearVelocityX = moveSpeed;
+                moveDirection = MoveDirection.Left;
                 break;
         }
 
         yield return new WaitForSeconds(directionChangeFrequency);
         
         StartCoroutine(ChangeMoveDirection());
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            collision.gameObject.GetComponent<Platform_Player>().ReduceHealth();
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            OnDeath();
+        }
+    }
+
+    private void OnDeath()
+    {
+        gameObject.SetActive(false);
     }
 }

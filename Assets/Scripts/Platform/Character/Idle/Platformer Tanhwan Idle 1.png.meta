@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: 16873ae94d862254f97610e15df27825
+guid: b1170d73745d8eb4281a147cf16cdd6a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4722285575611752452
-    second: AimLAB BulletCount_0
-  - first:
-      213: 3290022920813526035
-    second: AimLAB BulletCount_1
+      213: -5352430788719398094
+    second: Platformer Tanhwan Idle 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -112,30 +109,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: iOS
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: AimLAB BulletCount_0
+      name: Platformer Tanhwan Idle 1_0
       rect:
         serializedVersion: 2
-        x: 1354
-        y: 59
-        width: 139
-        height: 165
+        x: 134
+        y: 62
+        width: 125
+        height: 201
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -144,30 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cffd5b9e942177eb0800000000000000
-      internalID: -4722285575611752452
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: AimLAB BulletCount_1
-      rect:
-        serializedVersion: 2
-        x: 1381
-        y: 6
-        width: 522
-        height: 57
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 31cbbf94a6288ad20800000000000000
-      internalID: 3290022920813526035
+      spriteID: 23334895e8858b5b0800000000000000
+      internalID: -5352430788719398094
       vertices: []
       indices: 
       edges: []
@@ -185,9 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      AimLAB BulletCount_0: -4722285575611752452
-      AimLAB BulletCount_1: 3290022920813526035
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
