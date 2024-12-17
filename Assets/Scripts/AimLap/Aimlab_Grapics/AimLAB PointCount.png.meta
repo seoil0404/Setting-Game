@@ -185,7 +185,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      AimLAB PointCount_0: -2780095639973585666
+      AimLAB PointCount_1: -6553910904116312471
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
