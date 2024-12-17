@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      AimLAB Timer_0: -4819847055114329442
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
