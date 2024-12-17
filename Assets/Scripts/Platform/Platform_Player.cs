@@ -22,6 +22,7 @@ public class Platform_Player : MonoBehaviour
         {
             if(value)
             {
+                playerRigidbody.gameObject.transform.eulerAngles = Vector3.zero;
                 playerRigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
             }
             else
