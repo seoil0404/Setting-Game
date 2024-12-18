@@ -5,16 +5,15 @@ public class Aimlab_TargetCounter : MonoBehaviour
 {
     public TMP_Text targetCounterText;
     public int maxTargets = 50;
-    private int currentCount = 0; 
+    private int currentCount = 0;
 
     void Start()
     {
-        UpdateTargetCounter(); 
+        UpdateTargetCounter();
     }
 
     public void IncrementTargetCount()
     {
-        
         if (currentCount < maxTargets)
         {
             currentCount++;
@@ -24,7 +23,6 @@ public class Aimlab_TargetCounter : MonoBehaviour
 
     void UpdateTargetCounter()
     {
-        
         targetCounterText.text = currentCount + " / " + maxTargets;
     }
 }

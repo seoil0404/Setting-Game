@@ -7,8 +7,8 @@ public class Aimlab_TargetSpawner : MonoBehaviour
     public int maxTargets = 6;
     public Vector2 spawnAreaMin;
     public Vector2 spawnAreaMax;
-    public float spawnInterval = 0.5f; // 타겟 생성 속도 (슬라이더로 조절)
-    public float targetSize = 1.0f;    // 타겟 크기 (슬라이더로 조절)
+    public float spawnInterval = 0.5f;
+    public float targetSize = 1.0f;
     public float targetFadeDuration = 2.5f;
 
     public Aimlab_TargetCounter targetCounter;
@@ -45,14 +45,14 @@ public class Aimlab_TargetSpawner : MonoBehaviour
         );
 
         GameObject newTarget = Instantiate(targetPrefab, randomPosition, Quaternion.identity);
-        newTarget.transform.localScale = Vector3.one * targetSize; // 타겟 크기 적용
+        newTarget.transform.localScale = Vector3.one * targetSize;
 
         Aimlab_Target targetScript = newTarget.GetComponent<Aimlab_Target>();
         if (targetScript != null)
         {
             targetScript.OnTargetDestroyed += () =>
             {
-                DestroyTargetManually(newTarget, index);
+                DestroyTargetManually(newTarget, index, false); // Fade에 의한 파괴 (카운터 X)
             };
         }
 
@@ -80,19 +80,19 @@ public class Aimlab_TargetSpawner : MonoBehaviour
             yield return null;
         }
 
-        DestroyTargetManually(target, index);
+        DestroyTargetManually(target, index, false); // Fade에 의한 파괴 (카운터 X)
     }
 
-    void DestroyTargetManually(GameObject target, int index)
+    void DestroyTargetManually(GameObject target, int index, bool incrementCounter)
     {
         if (target != null)
         {
             Destroy(target);
             targets[index] = null;
 
-            if (targetCounter != null)
+            if (incrementCounter && targetCounter != null)
             {
-                targetCounter.IncrementTargetCount();
+                targetCounter.IncrementTargetCount(); // 클릭에 의한 파괴만 카운터 증가
             }
         }
     }
@@ -103,18 +103,7 @@ public class Aimlab_TargetSpawner : MonoBehaviour
 
         if (index != -1 && targets[index] != null)
         {
-            Destroy(target);
-            targets[index] = null;
-
-            if (targetCounter != null)
-            {
-                targetCounter.IncrementTargetCount();
-            }
-        }
-        else
-        {
-            Debug.LogWarning("Target not found or already destroyed.");
+            DestroyTargetManually(target, index, true); // 클릭에 의한 파괴 (카운터 O)
         }
     }
-
 }
