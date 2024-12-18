@@ -3,17 +3,17 @@ using UnityEngine.UI;
 
 public class Aimlab_SettingsManager : MonoBehaviour
 {
-    public GameObject settingsPanel;   // 설정창 패널
-    public GameObject crosshair;       // 조준선 오브젝트
-    public Slider sensitivitySlider;   // 감도 조절 Slider
-    public Slider crosshairSizeSlider; // 조준점 크기 Slider
-    public Slider targetSizeSlider;    // 타겟 크기 Slider
-    public Slider targetSpeedSlider;   // 타겟 생성 속도 Slider
-    public Toggle targetMovementToggle; // 타겟 움직임 토글
+    public GameObject settingsPanel; 
+    public GameObject crosshair;     
+    public Slider sensitivitySlider;  
+    public Slider crosshairSizeSlider; 
+    public Slider targetSizeSlider;   
+    public Slider targetSpeedSlider;   
+    public Toggle targetMovementToggle;
 
-    public Aimlab_MouseSensitivity mouseSensitivity;       // 감도 관리 스크립트
-    public Aimlab_CrosshairController crosshairController; // 조준점 관리 스크립트
-    public Aimlab_TargetSpawner targetSpawner;             // 타겟 스포너
+    public Aimlab_MouseSensitivity mouseSensitivity;       
+    public Aimlab_CrosshairController crosshairController; 
+    public Aimlab_TargetSpawner targetSpawner;            
 
     private bool isGamePaused = false;
 
@@ -25,7 +25,7 @@ public class Aimlab_SettingsManager : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
-        // 감도 슬라이더 설정
+  
         if (sensitivitySlider != null)
         {
             sensitivitySlider.minValue = 0.01f;
@@ -34,7 +34,6 @@ public class Aimlab_SettingsManager : MonoBehaviour
             sensitivitySlider.onValueChanged.AddListener(UpdateSensitivity);
         }
 
-        // 조준점 크기 슬라이더 설정
         if (crosshairSizeSlider != null)
         {
             crosshairSizeSlider.minValue = 0.1f;
@@ -43,16 +42,16 @@ public class Aimlab_SettingsManager : MonoBehaviour
             crosshairSizeSlider.onValueChanged.AddListener(UpdateCrosshairSize);
         }
 
-        // 타겟 크기 슬라이더 설정
+
         if (targetSizeSlider != null)
         {
-            targetSizeSlider.minValue = 0.5f;
-            targetSizeSlider.maxValue = 3.0f;
+            targetSizeSlider.minValue = 0.2f;
+            targetSizeSlider.maxValue = 1.0f;
             targetSizeSlider.value = targetSpawner.targetSize;
             targetSizeSlider.onValueChanged.AddListener(UpdateTargetSize);
         }
 
-        // 타겟 속도 슬라이더 설정
+        
         if (targetSpeedSlider != null)
         {
             targetSpeedSlider.minValue = 0.1f;
@@ -61,7 +60,7 @@ public class Aimlab_SettingsManager : MonoBehaviour
             targetSpeedSlider.onValueChanged.AddListener(UpdateTargetSpeed);
         }
 
-        // 타겟 움직임 토글 설정
+        
         if (targetMovementToggle != null)
         {
             targetMovementToggle.isOn = targetSpawner.isMovementEnabled;

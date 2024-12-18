@@ -1,4 +1,5 @@
 using UnityEngine;
+using DG.Tweening;
 
 public class Aimlab_Target : MonoBehaviour
 {
@@ -6,42 +7,52 @@ public class Aimlab_Target : MonoBehaviour
     public event TargetDestroyed OnTargetDestroyed;
 
     private bool isMoving = false;
-    private float moveSpeed = 1.5f;
-    private Vector2 direction;
+    private float moveSpeed = 1.0f; // 움직임 강도를 조절하기 위한 속도
 
-    public void SetMovement(bool enableMovement, float speed)
-    {
-        isMoving = enableMovement;
-        moveSpeed = speed;
-
-        // 랜덤 방향 설정 (왼, 오, 위, 아래 중 하나)
-        int randomDirection = Random.Range(0, 4);
-        switch (randomDirection)
-        {
-            case 0: direction = Vector2.left; break;
-            case 1: direction = Vector2.right; break;
-            case 2: direction = Vector2.up; break;
-            case 3: direction = Vector2.down; break;
-        }
-    }
-
-    void Update()
+    void Start()
     {
         if (isMoving)
         {
-            transform.Translate(direction * moveSpeed * Time.deltaTime);
-
-            // 화면 밖으로 나가지 않도록 체크
-            Vector3 viewportPosition = Camera.main.WorldToViewportPoint(transform.position);
-            if (viewportPosition.x < 0 || viewportPosition.x > 1 || viewportPosition.y < 0 || viewportPosition.y > 1)
-            {
-                direction = -direction; // 방향 반전
-            }
+            StartWiggle();
         }
+    }
+
+    public void SetMovement(bool isEnabled, float speed)
+    {
+        isMoving = isEnabled;
+        moveSpeed = speed;
+
+        if (isMoving)
+        {
+            StartWiggle();
+        }
+        else
+        {
+            StopWiggle();
+        }
+    }
+
+    private void StartWiggle()
+    {
+        // Wiggle 설정
+        transform.DOShakePosition(
+            duration: 10f,              // 움직임 지속 시간 (무한 반복을 위해 큰 값 설정)
+            strength: new Vector3(1f, 1f, 0), // 움직임의 강도 (X, Y, Z)
+            vibrato: 12,               // 진동 횟수
+            randomness: 80,            // 랜덤성
+            snapping: false,           // 위치를 정수 단위로 스냅
+            fadeOut: false             // 움직임이 끝날 때 점차 사라지는 효과
+        ).SetLoops(-1, LoopType.Restart); // 무한 반복
+    }
+
+    private void StopWiggle()
+    {
+        transform.DOKill(); // DOTween 애니메이션 종료
     }
 
     public void HandleHit()
     {
+        StopWiggle(); // 타겟이 파괴되면 Wiggle 멈춤
         OnTargetDestroyed?.Invoke();
     }
 
