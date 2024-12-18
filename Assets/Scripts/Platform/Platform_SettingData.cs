@@ -15,6 +15,7 @@ public class Platform_SettingData : ScriptableObject
     [SerializeField] private bool isSinkholeGenerate;
     [SerializeField] private bool isPlayerCanAttack;
     [SerializeField] private float playerJumpPower;
+    [SerializeField] private bool isPlayerStable;
     public KeySetting keySetting;
 
     [System.Serializable]
@@ -23,6 +24,18 @@ public class Platform_SettingData : ScriptableObject
         public KeyCode leftMoveKey;
         public KeyCode rightMoveKey;
         public KeyCode jumpKey;
+    }
+
+    public bool IsPlayerStable
+    {
+        get
+        {
+            return isPlayerStable;
+        }
+        set
+        {
+            isPlayerStable = value;
+        }
     }
 
     public float BackGroundMusicScale

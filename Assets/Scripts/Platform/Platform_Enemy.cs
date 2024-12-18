@@ -7,6 +7,9 @@ public class Platform_Enemy : MonoBehaviour
     [SerializeField] private float directionChangeFrequency;
     [SerializeField] private float directionChangeDelay;
     [SerializeField] private MoveDirection moveDirection;
+    [SerializeField] private Animator enemyAnimator;
+    [SerializeField] private SpriteRenderer enemySpriteRenderer;
+    [SerializeField] private Platform_SettingData settingData;
 
     [System.Serializable]
     public enum MoveDirection
@@ -25,17 +28,22 @@ public class Platform_Enemy : MonoBehaviour
     IEnumerator ChangeMoveDirection()
     {
         enemyRigidbody.linearVelocityX = 0;
+        enemyAnimator.SetBool("IsRun", false);
 
         yield return new WaitForSeconds(directionChangeDelay);
 
+        enemyAnimator.SetBool("IsRun", true);
         switch (moveDirection)
         {
             case MoveDirection.Left:
+
                 enemyRigidbody.linearVelocityX = -moveSpeed;
+                enemySpriteRenderer.flipX = false;
                 moveDirection = MoveDirection.Right;
                 break;
             case MoveDirection.Right:
                 enemyRigidbody.linearVelocityX = moveSpeed;
+                enemySpriteRenderer.flipX = true;
                 moveDirection = MoveDirection.Left;
                 break;
         }
@@ -55,7 +63,7 @@ public class Platform_Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        if(collision.gameObject.layer == LayerMask.NameToLayer("Player") && settingData.IsPlayerCanAttack)
         {
             OnDeath();
         }
