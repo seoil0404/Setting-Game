@@ -6,12 +6,19 @@ public class Platform_JumpPad : MonoBehaviour
     [SerializeField] private Vector3 jumpDirection;
 
     readonly float baseJumpPowerMultiplier = 2f;
+    private Animator jumpPadAnimator;
+
+    private void Awake()
+    {
+        jumpPadAnimator = GetComponent<Animator>();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             collision.gameObject.GetComponent<Platform_Player>().OnJumpPad(jumpTime, jumpDirection * baseJumpPowerMultiplier);
+            jumpPadAnimator.SetTrigger("Work");
         }
     }
 }

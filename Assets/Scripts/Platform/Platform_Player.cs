@@ -17,6 +17,11 @@ public class Platform_Player : MonoBehaviour
     private int health = 1;
     private bool isAcceptMove = true;
 
+    private void Awake()
+    {
+        IsStable = platformSettingData.IsPlayerStable;
+    }
+
     public int Health
     {
         get
@@ -25,6 +30,10 @@ public class Platform_Player : MonoBehaviour
         }
     }
 
+    public void OnDeath()
+    {
+        gameObject.SetActive(false);
+    }
     public bool IsStable
     {
         get
@@ -36,11 +45,13 @@ public class Platform_Player : MonoBehaviour
         {
             if(value)
             {
+                platformSettingData.IsPlayerStable = true;
                 playerRigidbody.gameObject.transform.eulerAngles = Vector3.zero;
                 playerRigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
             }
             else
             {
+                platformSettingData.IsPlayerStable = false;
                 playerRigidbody.constraints = RigidbodyConstraints2D.None;
             }
         }
@@ -77,6 +88,13 @@ public class Platform_Player : MonoBehaviour
         bool leftMove = Input.GetKey(platformSettingData.keySetting.leftMoveKey);
         bool rightMove = Input.GetKey(platformSettingData.keySetting.rightMoveKey);
 
+        if (Input.GetKeyDown(platformSettingData.keySetting.jumpKey) && !isJumping && platformSettingData.IsGravity)
+        {
+            isJumping = true;
+            playerRigidbody.linearVelocityY = platformSettingData.PlayerJumpPower * baseJumpPowerMultiplier;
+            StartCoroutine(HandleJump(0));
+        }
+
         if (leftMove && rightMove)
         {
             playerRigidbody.linearVelocityX = 0;
@@ -102,13 +120,6 @@ public class Platform_Player : MonoBehaviour
         {
             playerRigidbody.linearVelocityX = 0;
             playerAnimator.SetBool("IsRun", false);
-        }
-
-        if(Input.GetKeyDown(platformSettingData.keySetting.jumpKey) && !isJumping && platformSettingData.IsGravity)
-        {
-            isJumping = true;
-            playerRigidbody.linearVelocityY = platformSettingData.PlayerJumpPower * baseJumpPowerMultiplier;
-            StartCoroutine(HandleJump(0));
         }
     }
 
