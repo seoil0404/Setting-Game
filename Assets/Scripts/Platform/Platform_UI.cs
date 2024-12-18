@@ -19,12 +19,12 @@ public class Platform_UI : MonoBehaviour
     {
         if (settingUserInterface.activeSelf)
         {
-            player.isAcceptMove = true;
+            player.IsAcceptMove = true;
             settingUserInterface.SetActive(false);
         }
         else
         {
-            player.isAcceptMove = false;
+            player.IsAcceptMove = false;
             settingUserInterface.SetActive(true);
             DOTween.Kill(settingUserInterface.transform);
             settingUserInterface.transform.localScale = Vector3.zero;
