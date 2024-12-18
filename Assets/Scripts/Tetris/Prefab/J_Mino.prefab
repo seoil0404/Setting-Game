@@ -57,6 +57,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 604ade6275008ba428618e1cd5a0a6ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SettingData: {fileID: 11400000, guid: f5bc1e173b950e54fa0c0c880d0fc831, type: 2}
   rotationPoint: {x: 1, y: 0, z: 0}
   fallTime: 0.8
 --- !u!1 &5011399146046954120

@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Spawn : MonoBehaviour
 {
+    [SerializeField] private TetrisSetting SettingData;
+
     public GameObject[] Tetris;
+    public int m_deleteLineNum;
     public static Spawn Instance;
 
     private void Awake()
@@ -26,9 +30,16 @@ public class Spawn : MonoBehaviour
 
     public void NewTetris()
     {
-        Instantiate(Tetris[Random.Range(0, Tetris.Length)], transform.position, Quaternion.identity);
+        if (SettingData.IsMinoRandom)
+            Instantiate(Tetris[Random.Range(0, Tetris.Length)], transform.position, Quaternion.identity);
+        else
+            Instantiate(Tetris[0], transform.position, Quaternion.identity);
     }
 
+    public void Restart()
+    {
+        SceneManager.LoadScene("TetrisScene");
+    }
     // Update is called once per frame
     void Update()
     {
