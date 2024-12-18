@@ -7,7 +7,7 @@ public class Aimlab_Target : MonoBehaviour
     public event TargetDestroyed OnTargetDestroyed;
 
     private bool isMoving = false;
-    private float moveSpeed = 1.0f; // 움직임 강도를 조절하기 위한 속도
+    private float moveSpeed = 1.0f; 
 
     void Start()
     {
@@ -34,25 +34,25 @@ public class Aimlab_Target : MonoBehaviour
 
     private void StartWiggle()
     {
-        // Wiggle 설정
+    
         transform.DOShakePosition(
-            duration: 10f,              // 움직임 지속 시간 (무한 반복을 위해 큰 값 설정)
-            strength: new Vector3(1f, 1f, 0), // 움직임의 강도 (X, Y, Z)
-            vibrato: 12,               // 진동 횟수
-            randomness: 80,            // 랜덤성
-            snapping: false,           // 위치를 정수 단위로 스냅
-            fadeOut: false             // 움직임이 끝날 때 점차 사라지는 효과
-        ).SetLoops(-1, LoopType.Restart); // 무한 반복
+            duration: 10f,              
+            strength: new Vector3(1f, 1f, 0), 
+            vibrato: 12,               
+            randomness: 80,            
+            snapping: false,           
+            fadeOut: false             
+        ).SetLoops(-1, LoopType.Restart); 
     }
 
     private void StopWiggle()
     {
-        transform.DOKill(); // DOTween 애니메이션 종료
+        transform.DOKill(); 
     }
 
     public void HandleHit()
     {
-        StopWiggle(); // 타겟이 파괴되면 Wiggle 멈춤
+        StopWiggle();
         OnTargetDestroyed?.Invoke();
     }
 

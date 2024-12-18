@@ -46,7 +46,7 @@ public class Aimlab_SettingsManager : MonoBehaviour
         if (targetSizeSlider != null)
         {
             targetSizeSlider.minValue = 0.2f;
-            targetSizeSlider.maxValue = 1.0f;
+            targetSizeSlider.maxValue = 3.0f;
             targetSizeSlider.value = targetSpawner.targetSize;
             targetSizeSlider.onValueChanged.AddListener(UpdateTargetSize);
         }

@@ -330,7 +330,7 @@ MonoBehaviour:
   spawnAreaMin: {x: -5, y: -2}
   spawnAreaMax: {x: 5, y: 2}
   spawnInterval: 0.5
-  targetSize: 1
+  targetSize: 0.2
   targetFadeDuration: 2.5
   isMovementEnabled: 0
   targetMoveSpeed: 1
@@ -3106,7 +3106,7 @@ MonoBehaviour:
   verticalLine: {fileID: 1503726740}
   mouseSensitivity: {fileID: 1441279602}
   targetSpawner: {fileID: 143353235}
-  length: 0.3
+  length: 0.1
   targetLayer:
     serializedVersion: 2
     m_Bits: 64

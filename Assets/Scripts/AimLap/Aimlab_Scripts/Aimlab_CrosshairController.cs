@@ -10,9 +10,9 @@ public class Aimlab_CrosshairController : MonoBehaviour
     [SerializeField] private Aimlab_TargetSpawner targetSpawner;
 
     [Header("Crosshair Settings")]
-    public float length = 1.0f;      // 조준점 크기
-    private float baseThickness = 0.05f; // 기본 두께
-    private float thickness;            // 자동 계산된 두께
+    public float length = 1.0f;   
+    private float baseThickness = 0.05f;
+    private float thickness;           
 
     [Header("Target Layer")]
     public LayerMask targetLayer;
