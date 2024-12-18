@@ -5,7 +5,19 @@ using UnityEngine;
 public class Spawn : MonoBehaviour
 {
     public GameObject[] Tetris;
+    public static Spawn Instance;
 
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject); // 중복 방지
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
