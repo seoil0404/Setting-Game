@@ -27,12 +27,12 @@ public class TetrisGrid : MonoBehaviour
         //grid = new bool[width, height]; 
         for (int i = 0; i < m_heightLineVec.Length; i++)
         {
-            Instantiate(m_heightLine, new Vector3(0, m_heightLineVec[i].y), Quaternion.identity);
+            Instantiate(m_heightLine, new Vector3(m_heightLineVec[i].x, m_heightLineVec[i].y), Quaternion.identity);
             //Debug.DrawLine(new Vector3(m_widthLineVec[m_widthLineVec.Length - 1].x, m_heightLineVec[i].y), new Vector3(m_widthLineVec[0].x, m_heightLineVec[i].y), Color.black);
         }
         for (int i = 0; i < m_widthLineVec.Length; i++)
         {
-            Instantiate(m_widthLine, new Vector3(m_widthLineVec[i].x, 0), m_widthLine.transform.rotation);
+            Instantiate(m_widthLine, new Vector3(m_widthLineVec[i].x, m_widthLineVec[i].y), m_widthLine.transform.rotation);
 
             //Debug.DrawLine(new Vector3(m_widthLineVec[i].x, m_heightLineVec[m_heightLineVec.Length - 1].y), new Vector3(m_widthLineVec[i].x, m_heightLineVec[0].y), Color.black);
         }
@@ -57,26 +57,6 @@ public class TetrisGrid : MonoBehaviour
 
             Debug.DrawLine(new Vector3(m_widthLineVec[i].x, m_heightLineVec[m_heightLineVec.Length - 1].y), new Vector3(m_widthLineVec[i].x, m_heightLineVec[0].y),Color.black);
         }
-
-    }
-
-    private Vector2 RoundToGrid(Vector2 pos)
-    {
-        return new Vector2(Mathf.Round(pos.x), Mathf.Round(pos.y));
-    }
-    public void SaveBlockToGrid(Transform block)
-    {
-        foreach (Transform tile in block)
-        {
-            Vector2 pos = RoundToGrid(tile.position);
-            int x = (int)pos.x;
-            int y = (int)pos.y;
-
-            grid[x, y] = tile; // 블록 조각을 그리드에 기록
-        }
-    }
-    void AddBlock(int pX, int pY)
-    {
 
     }
 }
