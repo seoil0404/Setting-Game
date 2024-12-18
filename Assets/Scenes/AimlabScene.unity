@@ -332,6 +332,8 @@ MonoBehaviour:
   spawnInterval: 0.5
   targetSize: 1
   targetFadeDuration: 2.5
+  isMovementEnabled: 0
+  targetMoveSpeed: 1
   targetCounter: {fileID: 509464479}
 --- !u!4 &143353236
 Transform:
@@ -1407,6 +1409,7 @@ MonoBehaviour:
   crosshairSizeSlider: {fileID: 718476405}
   targetSizeSlider: {fileID: 310649257}
   targetSpeedSlider: {fileID: 38257493}
+  targetMovementToggle: {fileID: 978620099}
   mouseSensitivity: {fileID: 1441279602}
   crosshairController: {fileID: 1654053488}
   targetSpawner: {fileID: 143353235}

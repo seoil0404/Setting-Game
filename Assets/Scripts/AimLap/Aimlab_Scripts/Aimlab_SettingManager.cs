@@ -9,6 +9,7 @@ public class Aimlab_SettingsManager : MonoBehaviour
     public Slider crosshairSizeSlider; // 조준점 크기 Slider
     public Slider targetSizeSlider;    // 타겟 크기 Slider
     public Slider targetSpeedSlider;   // 타겟 생성 속도 Slider
+    public Toggle targetMovementToggle; // 타겟 움직임 토글
 
     public Aimlab_MouseSensitivity mouseSensitivity;       // 감도 관리 스크립트
     public Aimlab_CrosshairController crosshairController; // 조준점 관리 스크립트
@@ -28,7 +29,7 @@ public class Aimlab_SettingsManager : MonoBehaviour
         if (sensitivitySlider != null)
         {
             sensitivitySlider.minValue = 0.01f;
-            sensitivitySlider.maxValue = 10.0f;
+            sensitivitySlider.maxValue = 1.0f;
             sensitivitySlider.value = mouseSensitivity.sensitivity;
             sensitivitySlider.onValueChanged.AddListener(UpdateSensitivity);
         }
@@ -58,6 +59,13 @@ public class Aimlab_SettingsManager : MonoBehaviour
             targetSpeedSlider.maxValue = 3.0f;
             targetSpeedSlider.value = targetSpawner.spawnInterval;
             targetSpeedSlider.onValueChanged.AddListener(UpdateTargetSpeed);
+        }
+
+        // 타겟 움직임 토글 설정
+        if (targetMovementToggle != null)
+        {
+            targetMovementToggle.isOn = targetSpawner.isMovementEnabled;
+            targetMovementToggle.onValueChanged.AddListener(UpdateTargetMovement);
         }
 
         if (crosshair != null)
@@ -98,8 +106,12 @@ public class Aimlab_SettingsManager : MonoBehaviour
 
     void UpdateSensitivity(float value)
     {
-        mouseSensitivity.sensitivity = value;
+        float roundedValue = Mathf.Round(value * 100f) / 100f;
+
+        sensitivitySlider.value = roundedValue;
+        mouseSensitivity.sensitivity = roundedValue;
     }
+
 
     void UpdateCrosshairSize(float value)
     {
@@ -114,5 +126,10 @@ public class Aimlab_SettingsManager : MonoBehaviour
     void UpdateTargetSpeed(float value)
     {
         targetSpawner.spawnInterval = value;
+    }
+
+    void UpdateTargetMovement(bool isEnabled)
+    {
+        targetSpawner.isMovementEnabled = isEnabled;
     }
 }
