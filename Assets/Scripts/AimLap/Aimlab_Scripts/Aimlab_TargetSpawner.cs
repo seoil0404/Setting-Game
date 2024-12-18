@@ -88,24 +88,31 @@ public class Aimlab_TargetSpawner : MonoBehaviour
         }
     }
 
-    void DestroyTargetManually(GameObject target, int index)
-{
-    if (target != null)
-    {
-        Destroy(target);
-        targets[index] = null;
 
-        // 타겟 카운터 증가
-        if (targetCounter != null)
+    void DestroyTargetManually(GameObject target, int index)
+    {
+        if (target != null)
         {
-            targetCounter.IncrementTargetCount();
-            Debug.Log("Target destroyed. Counter incremented.");
+            Debug.Log($"Destroying target at index {index}");
+
+            Destroy(target);
+            targets[index] = null;
+
+            if (targetCounter != null)
+            {
+                Debug.Log("Incrementing target counter...");
+                targetCounter.IncrementTargetCount(); // 타겟 카운터 증가
+            }
+            else
+            {
+                Debug.LogWarning("TargetCounter is not assigned!");
+            }
         }
         else
         {
-            Debug.LogWarning("TargetCounter is not assigned!");
+            Debug.LogWarning("Target is null, cannot destroy.");
         }
     }
-}
+
 
 }
