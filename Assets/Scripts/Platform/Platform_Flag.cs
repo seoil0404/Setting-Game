@@ -7,6 +7,8 @@ public class Platform_Flag : MonoBehaviour
     [SerializeField] private Platform_SettingData settingData;
     [SerializeField] private Animator flagAnimator;
 
+    private readonly float flagRunDistance = 3f;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.layer == LayerMask.NameToLayer("Player"))
@@ -17,9 +19,9 @@ public class Platform_Flag : MonoBehaviour
 
     private void Update()
     {
-        if(player.transform.position.x + 3 > transform.position.x && settingData.IsGoalRun)
+        if(player.transform.position.x + flagRunDistance > transform.position.x && settingData.IsGoalRun)
         {
-            transform.position = new Vector3(player.transform.position.x + 3f, transform.position.y, transform.position.z);
+            transform.position = new Vector3(player.transform.position.x + flagRunDistance, transform.position.y, transform.position.z);
             flagAnimator.SetBool("IsRun", true);
         }
         else
