@@ -9,13 +9,14 @@ public class Platform_Player : MonoBehaviour
     [SerializeField] private Platform_SettingData platformSettingData;
     [SerializeField] private bool isJumping = false;
     [SerializeField] private Platform_GameManager gameManager;
+    [SerializeField] private GameObject jumpEffect;
 
     readonly float baseMoveSpeedMultiplier = 2.5f;
     readonly float baseJumpPowerMultiplier = 2.5f;
     readonly float toMaxJump = 0.25f; // how many wait second to get max power jump
 
     private int health = 1;
-    private bool isAcceptMove = true;
+    public bool isAcceptMove = true;
 
     private void Awake()
     {
@@ -92,6 +93,7 @@ public class Platform_Player : MonoBehaviour
         {
             isJumping = true;
             playerRigidbody.linearVelocityY = platformSettingData.PlayerJumpPower * baseJumpPowerMultiplier;
+            Instantiate(jumpEffect).transform.position = new Vector3(transform.position.x, transform.position.y - 0.65f, transform.position.z + 1);
             StartCoroutine(HandleJump(0));
         }
 
@@ -142,6 +144,9 @@ public class Platform_Player : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        isJumping = true;
+        if(collision.gameObject.layer != LayerMask.NameToLayer("Trigger"))
+        {
+            isJumping = true;
+        }
     }
 }

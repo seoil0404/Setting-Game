@@ -107,7 +107,7 @@ public class Platform_SettingData : ScriptableObject
         }
         set
         {
-            this.isGoalRun = value;
+            this.isGoalRun = !value;
         }
     }
     public bool IsSinkholeGenerate
@@ -118,7 +118,7 @@ public class Platform_SettingData : ScriptableObject
         }
         set
         {
-            this.isSinkholeGenerate = value;
+            this.isSinkholeGenerate = !value;
         }
     }
     public bool IsPlayerCanAttack
@@ -129,7 +129,7 @@ public class Platform_SettingData : ScriptableObject
         }
         set
         {
-            this.isPlayerCanAttack = value;
+            this.isPlayerCanAttack = !value;
         }
     }
     public float PlayerJumpPower

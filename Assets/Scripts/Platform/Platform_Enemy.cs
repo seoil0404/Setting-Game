@@ -1,4 +1,5 @@
 using System.Collections;
+using DG.Tweening;
 using UnityEngine;
 
 public class Platform_Enemy : MonoBehaviour
@@ -10,6 +11,8 @@ public class Platform_Enemy : MonoBehaviour
     [SerializeField] private Animator enemyAnimator;
     [SerializeField] private SpriteRenderer enemySpriteRenderer;
     [SerializeField] private Platform_SettingData settingData;
+
+    private bool isDeath = false;
 
     [System.Serializable]
     public enum MoveDirection
@@ -55,7 +58,7 @@ public class Platform_Enemy : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        if(collision.gameObject.layer == LayerMask.NameToLayer("Player") && !isDeath)
         {
             collision.gameObject.GetComponent<Platform_Player>().ReduceHealth();
         }
@@ -65,12 +68,30 @@ public class Platform_Enemy : MonoBehaviour
     {
         if(collision.gameObject.layer == LayerMask.NameToLayer("Player") && settingData.IsPlayerCanAttack)
         {
-            OnDeath();
+            StartCoroutine(OnDeath());
         }
     }
 
-    private void OnDeath()
+    IEnumerator OnDeath()
     {
+        enemyRigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
+        enemySpriteRenderer.DOFade(0, 0.2f);
+        isDeath = true;
+
+        yield return new WaitForSeconds(0.3f);
+        
+        enemySpriteRenderer.DOFade(1, 0.2f);
+        
+        yield return new WaitForSeconds(0.3f);
+        
+        enemySpriteRenderer.DOFade(0, 0.2f);
+        
+        yield return new WaitForSeconds(0.3f);
+        
+        enemySpriteRenderer.DOFade(1, 0.2f);
+        
+        yield return new WaitForSeconds(0.3f);
+        
         gameObject.SetActive(false);
     }
 }

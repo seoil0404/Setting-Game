@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,6 +21,10 @@ public class Platform_ScrollBarInitialize : MonoBehaviour
     [SerializeField] private Toggle sinkHole;
     [SerializeField] private Toggle characterStable;
 
+    [SerializeField] private TextMeshProUGUI leftKeyText;
+    [SerializeField] private TextMeshProUGUI rightKeyText;
+    [SerializeField] private TextMeshProUGUI jumpKeyText;
+
     private void Awake()
     {
         backGroundMusic.value = Data.BackGroundMusicScale;
@@ -27,10 +32,13 @@ public class Platform_ScrollBarInitialize : MonoBehaviour
         speed.value = Data.PlayerMoveSpeed;
         jumpPower.value = Data.PlayerJumpPower;
         cameraFollow.isOn = Data.IsCameraFollow;
-        canAttack.isOn = Data.IsPlayerCanAttack;
+        canAttack.isOn = !Data.IsPlayerCanAttack;
         gravity.isOn = Data.IsGravity;
-        goalRun.isOn = Data.IsGoalRun;
-        sinkHole.isOn = Data.IsSinkholeGenerate;
+        goalRun.isOn = !Data.IsGoalRun;
+        sinkHole.isOn = !Data.IsSinkholeGenerate;
         characterStable.isOn = Player.IsStable;
+        leftKeyText.text = Data.keySetting.leftMoveKey.ToString();
+        rightKeyText.text = Data.keySetting.rightMoveKey.ToString();
+        jumpKeyText.text = Data.keySetting.jumpKey.ToString();
     }
 }

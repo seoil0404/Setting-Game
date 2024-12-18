@@ -5,6 +5,7 @@ using UnityEngine;
 public class Platform_UI : MonoBehaviour
 {
     [SerializeField] private GameObject settingUserInterface;
+    [SerializeField] private Platform_Player player;
 
     private void Update()
     {
@@ -18,10 +19,12 @@ public class Platform_UI : MonoBehaviour
     {
         if (settingUserInterface.activeSelf)
         {
+            player.isAcceptMove = true;
             settingUserInterface.SetActive(false);
         }
         else
         {
+            player.isAcceptMove = false;
             settingUserInterface.SetActive(true);
             DOTween.Kill(settingUserInterface.transform);
             settingUserInterface.transform.localScale = Vector3.zero;
