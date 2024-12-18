@@ -35,6 +35,8 @@ public class Mino : MonoBehaviour
 
     [SerializeField] private string m_bottomLayer;
     [SerializeField] private string m_blockLayer;
+    [SerializeField] private string m_rightLayer;
+    [SerializeField] private string m_leftLayer;
 
     [SerializeField] private GameObject m_leftCollider;
     [SerializeField] private GameObject m_rightCollider;
@@ -183,25 +185,25 @@ public class Mino : MonoBehaviour
             case Direction.Right:
                 {
                     m_rightCollider.SetActive(true);
-                    ChangeLayer(m_rightCollider, m_bottomLayer);
+                    ChangeLayer(m_rightCollider, m_blockLayer);
                     break;
                 }
             case Direction.Left:
                 {
                     m_leftCollider.SetActive(true);
-                    ChangeLayer(m_leftCollider, m_bottomLayer);
+                    ChangeLayer(m_leftCollider, m_blockLayer);
                     break;
                 }
             case Direction.Up:
                 {
                     m_upCollider.SetActive(true);
-                    ChangeLayer(m_upCollider, m_bottomLayer);
+                    ChangeLayer(m_upCollider, m_blockLayer);
                     break;
                 }
             case Direction.Down:
                 {
                     m_downCollider.SetActive(true);
-                    ChangeLayer(m_downCollider,m_bottomLayer);
+                    ChangeLayer(m_downCollider, m_blockLayer);
                     break;
                 }
         }
