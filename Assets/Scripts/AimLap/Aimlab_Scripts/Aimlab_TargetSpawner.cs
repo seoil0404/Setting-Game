@@ -10,6 +10,9 @@ public class Aimlab_TargetSpawner : MonoBehaviour
     public float spawnInterval = 0.5f;
     public float targetSize = 1.0f;
     public float targetFadeDuration = 2.5f;
+    public bool isMovementEnabled = false;
+    public float targetMoveSpeed = 1.0f;  
+
 
     public Aimlab_TargetCounter targetCounter;
 
@@ -50,15 +53,18 @@ public class Aimlab_TargetSpawner : MonoBehaviour
         Aimlab_Target targetScript = newTarget.GetComponent<Aimlab_Target>();
         if (targetScript != null)
         {
+            targetScript.SetMovement(isMovementEnabled, targetMoveSpeed);
             targetScript.OnTargetDestroyed += () =>
             {
-                DestroyTargetManually(newTarget, index, false); // Fade에 의한 파괴 (카운터 X)
+                DestroyTargetManually(newTarget, index, false);
             };
+
         }
 
         targets[index] = newTarget;
         StartCoroutine(FadeAndDestroyTarget(newTarget, index, targetFadeDuration));
     }
+
 
     IEnumerator FadeAndDestroyTarget(GameObject target, int index, float fadeDuration)
     {
@@ -92,10 +98,11 @@ public class Aimlab_TargetSpawner : MonoBehaviour
 
             if (incrementCounter && targetCounter != null)
             {
-                targetCounter.IncrementTargetCount(); // 클릭에 의한 파괴만 카운터 증가
+                targetCounter.IncrementTargetCount(); // 카운터 증가
             }
         }
     }
+
 
     public void TargetClicked(GameObject target)
     {
@@ -103,7 +110,8 @@ public class Aimlab_TargetSpawner : MonoBehaviour
 
         if (index != -1 && targets[index] != null)
         {
-            DestroyTargetManually(target, index, true); // 클릭에 의한 파괴 (카운터 O)
+            DestroyTargetManually(target, index, true); // 클릭 시 카운터 증가
         }
     }
+
 }
