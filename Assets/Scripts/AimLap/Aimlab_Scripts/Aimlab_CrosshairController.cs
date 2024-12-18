@@ -5,13 +5,14 @@ public class Aimlab_CrosshairController : MonoBehaviour
     public LineRenderer horizontalLine;
     public LineRenderer verticalLine;
 
-    public Aimlab_MouseSensitivity mouseSensitivity; // 감도 관리 스크립트
+    public Aimlab_MouseSensitivity mouseSensitivity;
 
     [SerializeField] private Aimlab_TargetSpawner targetSpawner;
 
     [Header("Crosshair Settings")]
-    public float length = 1.0f;
-    public float thickness = 0.05f;
+    public float length = 1.0f;      // 조준점 크기
+    private float baseThickness = 0.05f; // 기본 두께
+    private float thickness;            // 자동 계산된 두께
 
     [Header("Target Layer")]
     public LayerMask targetLayer;
@@ -30,7 +31,7 @@ public class Aimlab_CrosshairController : MonoBehaviour
 
     void Update()
     {
-        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity.sensitivity; 
+        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity.sensitivity;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity.sensitivity;
 
         crosshairPosition += new Vector3(mouseX, mouseY, 0);
@@ -49,17 +50,27 @@ public class Aimlab_CrosshairController : MonoBehaviour
         }
     }
 
-    void UpdateCrosshairLines()
+    public void UpdateCrosshairLines()
     {
+        thickness = baseThickness * (length / 1.0f);
+
+
         horizontalLine.SetPosition(0, crosshairPosition + new Vector3(-length / 2, 0, 0));
         horizontalLine.SetPosition(1, crosshairPosition + new Vector3(length / 2, 0, 0));
         horizontalLine.startWidth = thickness;
         horizontalLine.endWidth = thickness;
 
+
         verticalLine.SetPosition(0, crosshairPosition + new Vector3(0, -length / 2, 0));
         verticalLine.SetPosition(1, crosshairPosition + new Vector3(0, length / 2, 0));
         verticalLine.startWidth = thickness;
         verticalLine.endWidth = thickness;
+    }
+
+    public void SetCrosshairSize(float newLength)
+    {
+        length = newLength;
+        UpdateCrosshairLines();
     }
 
     void CheckHit()
@@ -72,8 +83,10 @@ public class Aimlab_CrosshairController : MonoBehaviour
             if (target != null)
             {
                 targetSpawner.TargetClicked(target.gameObject);
-                target.HandleHit(); // 타겟 제거
+                target.HandleHit();
             }
         }
     }
+
+
 }

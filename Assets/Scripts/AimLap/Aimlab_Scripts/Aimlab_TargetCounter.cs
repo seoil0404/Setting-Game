@@ -22,8 +22,9 @@ public class Aimlab_TargetCounter : MonoBehaviour
         }
     }
 
-    private void UpdateTargetCounter()
+    void UpdateTargetCounter()
     {
+        
         targetCounterText.text = currentCount + " / " + maxTargets;
     }
 }

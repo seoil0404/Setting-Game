@@ -7,9 +7,11 @@ public class Aimlab_TargetSpawner : MonoBehaviour
     public int maxTargets = 6;
     public Vector2 spawnAreaMin;
     public Vector2 spawnAreaMax;
-    public float spawnInterval = 0.5f;
+    public float spawnInterval = 0.5f; // 타겟 생성 속도 (슬라이더로 조절)
+    public float targetSize = 1.0f;    // 타겟 크기 (슬라이더로 조절)
+    public float targetFadeDuration = 2.5f;
 
-    public Aimlab_TargetCounter targetCounter; 
+    public Aimlab_TargetCounter targetCounter;
 
     private GameObject[] targets;
 
@@ -43,22 +45,29 @@ public class Aimlab_TargetSpawner : MonoBehaviour
         );
 
         GameObject newTarget = Instantiate(targetPrefab, randomPosition, Quaternion.identity);
-        targets[index] = newTarget;
+        newTarget.transform.localScale = Vector3.one * targetSize; // 타겟 크기 적용
 
-        
-        StartCoroutine(FadeAndDestroyTarget(newTarget, index));
+        Aimlab_Target targetScript = newTarget.GetComponent<Aimlab_Target>();
+        if (targetScript != null)
+        {
+            targetScript.OnTargetDestroyed += () =>
+            {
+                DestroyTargetManually(newTarget, index);
+            };
+        }
+
+        targets[index] = newTarget;
+        StartCoroutine(FadeAndDestroyTarget(newTarget, index, targetFadeDuration));
     }
 
-    IEnumerator FadeAndDestroyTarget(GameObject target, int index)
+    IEnumerator FadeAndDestroyTarget(GameObject target, int index, float fadeDuration)
     {
         if (target == null) yield break;
 
         SpriteRenderer renderer = target.GetComponent<SpriteRenderer>();
         if (renderer == null) yield break;
 
-        float fadeDuration = 2.5f;
         float elapsedTime = 0f;
-
         Color initialColor = renderer.color;
 
         while (elapsedTime < fadeDuration)
@@ -71,57 +80,41 @@ public class Aimlab_TargetSpawner : MonoBehaviour
             yield return null;
         }
 
-        
-        if (target != null)
-        {
-            Destroy(target);
-            targets[index] = null;
-        }
+        DestroyTargetManually(target, index);
     }
-
-    public void TargetClicked(GameObject target)
-    {
-        Debug.Log($"TargetClicked called for {target.name}");
-
-        int index = System.Array.IndexOf(targets, target);
-
-        if (index != -1 && targets[index] != null)
-        {
-            Debug.Log($"Target found at index {index}, destroying...");
-            DestroyTargetManually(target, index);
-        }
-        else
-        {
-            Debug.LogWarning($"Target not found in the array or already destroyed: {target.name}");
-        }
-    }
-
-
 
     void DestroyTargetManually(GameObject target, int index)
     {
         if (target != null)
         {
-            Debug.Log($"Destroying target at index {index}");
-
             Destroy(target);
             targets[index] = null;
 
             if (targetCounter != null)
             {
-                Debug.Log("Incrementing target counter...");
-                targetCounter.IncrementTargetCount(); // 타겟 카운터 증가
+                targetCounter.IncrementTargetCount();
             }
-            else
+        }
+    }
+
+    public void TargetClicked(GameObject target)
+    {
+        int index = System.Array.IndexOf(targets, target);
+
+        if (index != -1 && targets[index] != null)
+        {
+            Destroy(target);
+            targets[index] = null;
+
+            if (targetCounter != null)
             {
-                Debug.LogWarning("TargetCounter is not assigned!");
+                targetCounter.IncrementTargetCount(); // 타겟 카운터 증가
             }
         }
         else
         {
-            Debug.LogWarning("Target is null, cannot destroy.");
+            Debug.LogWarning("Target not found or already destroyed.");
         }
     }
-
 
 }
