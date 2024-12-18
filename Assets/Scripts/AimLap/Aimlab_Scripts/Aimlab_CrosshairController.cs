@@ -7,6 +7,8 @@ public class Aimlab_CrosshairController : MonoBehaviour
 
     public Aimlab_MouseSensitivity mouseSensitivity; // 감도 관리 스크립트
 
+    [SerializeField] private Aimlab_TargetSpawner targetSpawner;
+
     [Header("Crosshair Settings")]
     public float length = 1.0f;
     public float thickness = 0.05f;
@@ -69,6 +71,7 @@ public class Aimlab_CrosshairController : MonoBehaviour
             Aimlab_Target target = hit.collider.GetComponent<Aimlab_Target>();
             if (target != null)
             {
+                targetSpawner.TargetClicked(target.gameObject);
                 target.HandleHit(); // 타겟 제거
             }
         }

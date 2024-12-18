@@ -81,12 +81,21 @@ public class Aimlab_TargetSpawner : MonoBehaviour
 
     public void TargetClicked(GameObject target)
     {
+        Debug.Log($"TargetClicked called for {target.name}");
+
         int index = System.Array.IndexOf(targets, target);
+
         if (index != -1 && targets[index] != null)
         {
+            Debug.Log($"Target found at index {index}, destroying...");
             DestroyTargetManually(target, index);
         }
+        else
+        {
+            Debug.LogWarning($"Target not found in the array or already destroyed: {target.name}");
+        }
     }
+
 
 
     void DestroyTargetManually(GameObject target, int index)
