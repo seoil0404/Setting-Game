@@ -29,7 +29,7 @@ public class Aimlab_SettingsManager : MonoBehaviour
         if (sensitivitySlider != null)
         {
             sensitivitySlider.minValue = 0.01f;
-            sensitivitySlider.maxValue = 10.0f;
+            sensitivitySlider.maxValue = 1.0f;
             sensitivitySlider.value = mouseSensitivity.sensitivity;
             sensitivitySlider.onValueChanged.AddListener(UpdateSensitivity);
         }
@@ -106,8 +106,12 @@ public class Aimlab_SettingsManager : MonoBehaviour
 
     void UpdateSensitivity(float value)
     {
-        mouseSensitivity.sensitivity = value;
+        float roundedValue = Mathf.Round(value * 100f) / 100f;
+
+        sensitivitySlider.value = roundedValue;
+        mouseSensitivity.sensitivity = roundedValue;
     }
+
 
     void UpdateCrosshairSize(float value)
     {
