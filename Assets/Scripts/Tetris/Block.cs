@@ -9,8 +9,9 @@ public class Block : MonoBehaviour
     public static int width = 10;
     public static int height = 20;
 
-    [SerializeField] private Spawn m_spawner;
     private static Transform[,] grid = new Transform[width, height];
+
+
     private void Update()
     {
         Move();
@@ -57,7 +58,7 @@ public class Block : MonoBehaviour
                 AddToGrid();
                 CheckForLine();
                 this.enabled = false;
-                m_spawner.NewTetris();
+                Spawn.Instance.NewTetris();
             }
             previousTime = Time.time;
         }
