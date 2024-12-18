@@ -169,7 +169,6 @@ public class Mino : MonoBehaviour
         else if (collision.gameObject.layer == LayerMask.NameToLayer(m_blockLayer))
         {
             m_isOn = false;
-            //Down();
         }
     }
 
