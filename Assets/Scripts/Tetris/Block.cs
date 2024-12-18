@@ -8,6 +8,8 @@ public class Block : MonoBehaviour
     public float fallTime = 0.8f;
     public static int width = 10;
     public static int height = 20;
+
+    [SerializeField] private Spawn m_spawner;
     private static Transform[,] grid = new Transform[width, height];
     private void Update()
     {
@@ -55,7 +57,7 @@ public class Block : MonoBehaviour
                 AddToGrid();
                 CheckForLine();
                 this.enabled = false;
-                FindObjectOfType<Spawn>().NewTetris();
+                m_spawner.NewTetris();
             }
             previousTime = Time.time;
         }
