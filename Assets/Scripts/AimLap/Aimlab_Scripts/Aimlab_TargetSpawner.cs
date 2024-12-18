@@ -108,7 +108,7 @@ public class Aimlab_TargetSpawner : MonoBehaviour
 
             if (targetCounter != null)
             {
-                targetCounter.IncrementTargetCount(); // 타겟 카운터 증가
+                targetCounter.IncrementTargetCount();
             }
         }
         else
