@@ -10,13 +10,23 @@ public class Platform_Player : MonoBehaviour
     [SerializeField] private bool isJumping = false;
     [SerializeField] private Platform_GameManager gameManager;
     [SerializeField] private GameObject jumpEffect;
+    [SerializeField] private AudioSource jumpSource;
 
     readonly float baseMoveSpeedMultiplier = 2.5f;
     readonly float baseJumpPowerMultiplier = 2.5f;
     readonly float toMaxJump = 0.25f; // how many wait second to get max power jump
 
     private int health = 1;
-    public bool isAcceptMove = true;
+    private bool isAcceptMove = true;
+
+    public bool IsAcceptMove
+    {
+        set
+        {
+            isAcceptMove = value;
+            if(value == false) playerRigidbody.linearVelocity = Vector3.zero;
+        }
+    }
 
     private void Awake()
     {
@@ -93,7 +103,7 @@ public class Platform_Player : MonoBehaviour
         {
             isJumping = true;
             playerRigidbody.linearVelocityY = platformSettingData.PlayerJumpPower * baseJumpPowerMultiplier;
-            Instantiate(jumpEffect).transform.position = new Vector3(transform.position.x, transform.position.y - 0.65f, transform.position.z + 1);
+            jumpSource.Play();
             StartCoroutine(HandleJump(0));
         }
 
@@ -140,6 +150,7 @@ public class Platform_Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Instantiate(jumpEffect).transform.position = new Vector3(transform.position.x, transform.position.y - 0.65f, transform.position.z + 1);
         isJumping = false;
     }
     private void OnTriggerExit2D(Collider2D collision)

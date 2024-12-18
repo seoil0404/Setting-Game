@@ -1,5 +1,6 @@
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Platform_GameManager : MonoBehaviour
 {
@@ -7,6 +8,9 @@ public class Platform_GameManager : MonoBehaviour
     [SerializeField] private GameObject defeat;
     [SerializeField] private Platform_Player player;
     [SerializeField] private Platform_SettingData settingData;
+    [SerializeField] private AudioSource backGroundAudio;
+    [SerializeField] private AudioSource defeatAudio;
+    [SerializeField] private AudioSource victoryAudio;
 
     private void Awake()
     {
@@ -15,7 +19,11 @@ public class Platform_GameManager : MonoBehaviour
     }
     public void Defeat()
     {
+        backGroundAudio.Stop();
+        defeatAudio.Play();
+        
         defeat.SetActive(true);
+        
         defeat.transform.localScale = Vector3.zero;
         defeat.transform.DOScale(Vector3.one, 1f).SetEase(Ease.OutQuint);
 
@@ -26,7 +34,11 @@ public class Platform_GameManager : MonoBehaviour
 
     public void Victory()
     {
+        backGroundAudio.Stop();
+        victoryAudio.Play();
+
         victory.SetActive(true);
+        
         victory.transform.localScale = Vector3.zero;
         victory.transform.DOScale(Vector3.one, 1f).SetEase(Ease.OutQuint);
 
@@ -35,9 +47,18 @@ public class Platform_GameManager : MonoBehaviour
         Debug.Log("Victory");
     }
 
+    public void Restart()
+    {
+        SceneManager.LoadScene("PlatformScene");
+    }
+
+    public void NextLevel()
+    {
+        SceneManager.LoadScene("AimlabScene");
+    }
+
     private void Stop()
     {
         player.OnDeath();
-        //settingData.IsCameraFollow = false;
     }
 }
