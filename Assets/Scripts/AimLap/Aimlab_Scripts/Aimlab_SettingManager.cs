@@ -1,19 +1,14 @@
-
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Aimlab_SettingsManager : MonoBehaviour
 {
-    public GameObject settingsPanel;
-    public GameObject crosshair;
-    private bool isGamePaused = false;
-
-    [Header("Sliders for Settings")]
-    public Slider sensitivitySlider;        // 감도 조절 Slider
-    public Slider crosshairSizeSlider;      // 조준선 크기 조절 Slider
-
+    public GameObject settingsPanel;   // 설정창 패널
+    public GameObject crosshair;       // 조준선 오브젝트
+    public Slider sensitivitySlider;   // 감도 조절 Slider
     public Aimlab_MouseSensitivity mouseSensitivity; // 감도 관리 스크립트
-    public Aimlab_CrosshairController crosshairController; // 조준선 스크립트
+
+    private bool isGamePaused = false;
 
     void Start()
     {
@@ -23,13 +18,19 @@ public class Aimlab_SettingsManager : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
-        // Slider 초기값 설정
-        sensitivitySlider.value = mouseSensitivity.sensitivity;
-        crosshairSizeSlider.value = crosshairController.length;
+        // 슬라이더 최소값 및 최대값 설정
+        if (sensitivitySlider != null)
+        {
+            sensitivitySlider.minValue = 0.01f;  // 최소 감도 값
+            sensitivitySlider.maxValue = 10.0f;  // 최대 감도 값
+            sensitivitySlider.value = mouseSensitivity.sensitivity; // 초기값 동기화
+            sensitivitySlider.onValueChanged.AddListener(UpdateSensitivity); // 감도 변경 이벤트 연결
+        }
 
-        // Slider 이벤트 연결
-        sensitivitySlider.onValueChanged.AddListener(UpdateSensitivity);
-        crosshairSizeSlider.onValueChanged.AddListener(UpdateCrosshairSize);
+        if (crosshair != null)
+        {
+            crosshair.SetActive(true); // 조준선 활성화
+        }
     }
 
     void Update()
@@ -48,7 +49,7 @@ public class Aimlab_SettingsManager : MonoBehaviour
         {
             Time.timeScale = 0f;
             settingsPanel.SetActive(true);
-            if (crosshair != null) crosshair.SetActive(false);
+            if (crosshair != null) crosshair.SetActive(false); // 조준선 비활성화
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
         }
@@ -56,7 +57,7 @@ public class Aimlab_SettingsManager : MonoBehaviour
         {
             Time.timeScale = 1f;
             settingsPanel.SetActive(false);
-            if (crosshair != null) crosshair.SetActive(true);
+            if (crosshair != null) crosshair.SetActive(true); // 조준선 활성화
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
         }
@@ -64,12 +65,10 @@ public class Aimlab_SettingsManager : MonoBehaviour
 
     void UpdateSensitivity(float value)
     {
-        mouseSensitivity.sensitivity = value;
-    }
-
-    void UpdateCrosshairSize(float value)
-    {
-        crosshairController.length = value;
-        crosshairController.UpdateCrosshairLines();
+        if (mouseSensitivity != null)
+        {
+            mouseSensitivity.sensitivity = value; // 감도 값 적용
+            
+        }
     }
 }
