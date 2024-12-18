@@ -11,12 +11,26 @@ public class Platform_GameManager : MonoBehaviour
     [SerializeField] private AudioSource backGroundAudio;
     [SerializeField] private AudioSource defeatAudio;
     [SerializeField] private AudioSource victoryAudio;
+    [SerializeField] private AudioSource jumpAudio;
 
     private void Awake()
     {
         victory.SetActive(false);
         defeat.SetActive(false);
     }
+
+    public void ChangeBackGroundMusicScale()
+    {
+        backGroundAudio.volume = settingData.BackGroundMusicScale * 0.1f;
+        defeatAudio.volume = settingData.BackGroundMusicScale * 0.1f;
+        victoryAudio.volume = settingData.BackGroundMusicScale * 0.1f;
+    }
+
+    public void ChangeEffectSound()
+    {
+        jumpAudio.volume = settingData.EffectSoundScale * 0.1f;
+    }
+
     public void Defeat()
     {
         backGroundAudio.Stop();

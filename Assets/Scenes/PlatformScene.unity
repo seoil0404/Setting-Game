@@ -4980,6 +4980,75 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f3808d5ef0d15a4eb34e3b10ad6775e, type: 3}
+--- !u!1001 &433210068
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1535458383579205172, guid: 9b8dfb61c3daaa44f94d16a943601845, type: 3}
+      propertyPath: m_Name
+      value: Platformer Ground Tall (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568280288333194367, guid: 9b8dfb61c3daaa44f94d16a943601845, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.8662
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568280288333194367, guid: 9b8dfb61c3daaa44f94d16a943601845, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.8662
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568280288333194367, guid: 9b8dfb61c3daaa44f94d16a943601845, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.8662
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568280288333194367, guid: 9b8dfb61c3daaa44f94d16a943601845, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 119.27
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568280288333194367, guid: 9b8dfb61c3daaa44f94d16a943601845, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 9.82
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568280288333194367, guid: 9b8dfb61c3daaa44f94d16a943601845, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568280288333194367, guid: 9b8dfb61c3daaa44f94d16a943601845, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568280288333194367, guid: 9b8dfb61c3daaa44f94d16a943601845, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568280288333194367, guid: 9b8dfb61c3daaa44f94d16a943601845, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568280288333194367, guid: 9b8dfb61c3daaa44f94d16a943601845, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568280288333194367, guid: 9b8dfb61c3daaa44f94d16a943601845, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568280288333194367, guid: 9b8dfb61c3daaa44f94d16a943601845, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568280288333194367, guid: 9b8dfb61c3daaa44f94d16a943601845, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9b8dfb61c3daaa44f94d16a943601845, type: 3}
 --- !u!1 &434632992
 GameObject:
   m_ObjectHideFlags: 0
@@ -6713,6 +6782,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: Platform_SettingData, Assembly-CSharp
         m_MethodName: set_EffectSoundScale
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1707701968}
+        m_TargetAssemblyTypeName: Platform_GameManager, Assembly-CSharp
+        m_MethodName: ChangeEffectSound
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -17427,6 +17508,7 @@ MonoBehaviour:
   backGroundAudio: {fileID: 283350460}
   defeatAudio: {fileID: 360649937}
   victoryAudio: {fileID: 1161607148}
+  jumpAudio: {fileID: 1677032370}
 --- !u!1001 &1711679619
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18451,7 +18533,7 @@ Transform:
   m_GameObject: {fileID: 1819481099}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.3, y: -0.94, z: 0}
+  m_LocalPosition: {x: -5, y: -1.2, z: 0}
   m_LocalScale: {x: 0.7971, y: 0.71676546, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -19698,6 +19780,10 @@ MonoBehaviour:
   Player: {fileID: 1819481104}
   backGroundMusic: {fileID: 2016729673}
   effectSound: {fileID: 591105742}
+  backGroundAudio: {fileID: 283350460}
+  jumpSoundAudio: {fileID: 1677032370}
+  defeatAudio: {fileID: 360649937}
+  victoryAudio: {fileID: 1161607148}
   speed: {fileID: 1908138221}
   jumpPower: {fileID: 1440796323}
   cameraFollow: {fileID: 1815449172}
@@ -20450,7 +20536,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -25.8, y: -27}
+  m_AnchoredPosition: {x: -25.800049, y: -27}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1981115755
@@ -20657,6 +20743,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: Platform_SettingData, Assembly-CSharp
         m_MethodName: set_BackGroundMusicScale
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1707701968}
+        m_TargetAssemblyTypeName: Platform_GameManager, Assembly-CSharp
+        m_MethodName: ChangeBackGroundMusicScale
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -21170,6 +21268,75 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6299617864131926118, guid: 8f3808d5ef0d15a4eb34e3b10ad6775e, type: 3}
   m_PrefabInstance: {fileID: 2048875545}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2060165710
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1535458383579205172, guid: 9b8dfb61c3daaa44f94d16a943601845, type: 3}
+      propertyPath: m_Name
+      value: Platformer Ground Tall (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568280288333194367, guid: 9b8dfb61c3daaa44f94d16a943601845, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.8662
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568280288333194367, guid: 9b8dfb61c3daaa44f94d16a943601845, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.8662
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568280288333194367, guid: 9b8dfb61c3daaa44f94d16a943601845, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.8662
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568280288333194367, guid: 9b8dfb61c3daaa44f94d16a943601845, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 122.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568280288333194367, guid: 9b8dfb61c3daaa44f94d16a943601845, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 9.77
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568280288333194367, guid: 9b8dfb61c3daaa44f94d16a943601845, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568280288333194367, guid: 9b8dfb61c3daaa44f94d16a943601845, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568280288333194367, guid: 9b8dfb61c3daaa44f94d16a943601845, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568280288333194367, guid: 9b8dfb61c3daaa44f94d16a943601845, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568280288333194367, guid: 9b8dfb61c3daaa44f94d16a943601845, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568280288333194367, guid: 9b8dfb61c3daaa44f94d16a943601845, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568280288333194367, guid: 9b8dfb61c3daaa44f94d16a943601845, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568280288333194367, guid: 9b8dfb61c3daaa44f94d16a943601845, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9b8dfb61c3daaa44f94d16a943601845, type: 3}
 --- !u!1001 &2074782756
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21505,6 +21672,75 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6299617864131926118, guid: 8f3808d5ef0d15a4eb34e3b10ad6775e, type: 3}
   m_PrefabInstance: {fileID: 2099738425}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2109869497
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1535458383579205172, guid: 9b8dfb61c3daaa44f94d16a943601845, type: 3}
+      propertyPath: m_Name
+      value: Platformer Ground Tall
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568280288333194367, guid: 9b8dfb61c3daaa44f94d16a943601845, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.8662
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568280288333194367, guid: 9b8dfb61c3daaa44f94d16a943601845, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.8662
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568280288333194367, guid: 9b8dfb61c3daaa44f94d16a943601845, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.8662
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568280288333194367, guid: 9b8dfb61c3daaa44f94d16a943601845, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 115.92
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568280288333194367, guid: 9b8dfb61c3daaa44f94d16a943601845, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 9.96
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568280288333194367, guid: 9b8dfb61c3daaa44f94d16a943601845, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568280288333194367, guid: 9b8dfb61c3daaa44f94d16a943601845, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568280288333194367, guid: 9b8dfb61c3daaa44f94d16a943601845, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568280288333194367, guid: 9b8dfb61c3daaa44f94d16a943601845, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568280288333194367, guid: 9b8dfb61c3daaa44f94d16a943601845, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568280288333194367, guid: 9b8dfb61c3daaa44f94d16a943601845, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568280288333194367, guid: 9b8dfb61c3daaa44f94d16a943601845, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568280288333194367, guid: 9b8dfb61c3daaa44f94d16a943601845, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9b8dfb61c3daaa44f94d16a943601845, type: 3}
 --- !u!1001 &2109996882
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22086,3 +22322,6 @@ SceneRoots:
   - {fileID: 1677032371}
   - {fileID: 360649938}
   - {fileID: 1161607147}
+  - {fileID: 2109869497}
+  - {fileID: 433210068}
+  - {fileID: 2060165710}

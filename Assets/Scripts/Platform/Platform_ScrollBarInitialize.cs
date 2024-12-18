@@ -11,6 +11,12 @@ public class Platform_ScrollBarInitialize : MonoBehaviour
     
     [SerializeField] private Slider backGroundMusic;
     [SerializeField] private Slider effectSound;
+    
+    [SerializeField] private AudioSource backGroundAudio;
+    [SerializeField] private AudioSource jumpSoundAudio;
+    [SerializeField] private AudioSource defeatAudio;
+    [SerializeField] private AudioSource victoryAudio;
+
     [SerializeField] private Slider speed;
     [SerializeField] private Slider jumpPower;
 
@@ -28,7 +34,15 @@ public class Platform_ScrollBarInitialize : MonoBehaviour
     private void Awake()
     {
         backGroundMusic.value = Data.BackGroundMusicScale;
+
+        backGroundAudio.volume = backGroundMusic.value * 0.1f;
+        defeatAudio.volume = backGroundMusic.value * 0.1f;
+        victoryAudio.volume = backGroundMusic.value * 0.1f;
+
         effectSound.value = Data.EffectSoundScale;
+
+        jumpSoundAudio.volume = effectSound.value * 0.1f;
+
         speed.value = Data.PlayerMoveSpeed;
         jumpPower.value = Data.PlayerJumpPower;
         cameraFollow.isOn = Data.IsCameraFollow;
