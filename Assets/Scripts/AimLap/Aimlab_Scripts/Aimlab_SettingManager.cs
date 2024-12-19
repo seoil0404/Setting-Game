@@ -20,7 +20,7 @@ public class Aimlab_SettingsManager : MonoBehaviour
     public GameObject targetUI;
     public GameObject ammoUI;
 
-    public GameObject gameClearUI; // 게임 클리어 UI
+    public GameObject gameClearUI; 
 
     public Aimlab_MouseSensitivity mouseSensitivity;
     public Aimlab_CrosshairController crosshairController;
@@ -35,7 +35,7 @@ public class Aimlab_SettingsManager : MonoBehaviour
             settingsPanel.SetActive(false);
 
         if (gameClearUI != null)
-            gameClearUI.SetActive(false); // 게임 클리어 UI 비활성화
+            gameClearUI.SetActive(false); 
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -214,12 +214,12 @@ public class Aimlab_SettingsManager : MonoBehaviour
     public void Retry()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name); // 현재 씬 다시 로드
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name); 
     }
 
     public void ReturnToMenu()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("MenuScene"); // 메뉴 씬으로 이동
+        SceneManager.LoadScene("MenuScene"); 
     }
 }

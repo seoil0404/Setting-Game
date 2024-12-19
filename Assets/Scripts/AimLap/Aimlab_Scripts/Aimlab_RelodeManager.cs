@@ -3,13 +3,13 @@ using UnityEngine;
 
 public class Aimlab_ReloadManager : MonoBehaviour
 {
-    public int maxAmmo = 10;           // 최대 총알 수
-    public float reloadTime = 2.0f;   // 장전 시간
-    public AudioSource audioSource;  // 오디오 소스
-    public AudioClip reloadSound;    // 장전 소리
+    public int maxAmmo = 10;          
+    public float reloadTime = 2.0f;   
+    public AudioSource audioSource;  
+    public AudioClip reloadSound;   
 
-    private int currentAmmo;          // 현재 총알 수
-    private bool isReloading = false; // 장전 중 여부
+    private int currentAmmo;         
+    private bool isReloading = false; 
 
     public delegate void AmmoUpdated(int currentAmmo, int maxAmmo);
     public event AmmoUpdated OnAmmoUpdated;
@@ -39,7 +39,7 @@ public class Aimlab_ReloadManager : MonoBehaviour
     {
         isReloading = true;
 
-        // 장전 소리 재생
+       
         if (audioSource != null && reloadSound != null)
         {
             audioSource.PlayOneShot(reloadSound);
@@ -47,7 +47,7 @@ public class Aimlab_ReloadManager : MonoBehaviour
 
         yield return new WaitForSeconds(reloadTime);
 
-        currentAmmo = maxAmmo; // 총알 리셋
+        currentAmmo = maxAmmo;
         isReloading = false;
 
         UpdateAmmoUI();

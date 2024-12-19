@@ -70,7 +70,7 @@ public class Aimlab_Target : MonoBehaviour
     {
         StopWiggle();
 
-        // 히트 소리 재생
+        
         if (audioSource != null && hitSound != null)
         {
             audioSource.PlayOneShot(hitSound);

@@ -29,12 +29,12 @@ public class Aimlab_CrosshairController : MonoBehaviour
     public AudioClip reloadSound;
 
     [Header("Ammo Settings")]
-    public int maxAmmo = 10;       // 최대 탄약 수
-    private int currentAmmo = 10;  // 현재 탄약 수
+    public int maxAmmo = 10;      
+    private int currentAmmo = 10;  
     private bool isReloading = false;
 
     [Header("UI Settings")]
-    public TextMeshProUGUI ammoText; // 탄약 수를 표시할 TextMeshProUGUI
+    public TextMeshProUGUI ammoText; 
 
     void Start()
     {
@@ -43,7 +43,7 @@ public class Aimlab_CrosshairController : MonoBehaviour
 
         crosshairPosition = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, crosshairZDepth));
         UpdateCrosshairLines();
-        UpdateAmmoText(); // 초기 탄약 수 업데이트
+        UpdateAmmoText(); 
     }
 
     void Update()
@@ -107,7 +107,7 @@ public class Aimlab_CrosshairController : MonoBehaviour
     {
         isReloading = true;
 
-        // 재장전 소리 재생
+   
         if (audioSource != null && reloadSound != null)
         {
             audioSource.PlayOneShot(reloadSound);
@@ -132,7 +132,7 @@ public class Aimlab_CrosshairController : MonoBehaviour
                 targetSpawner.TargetClicked(target.gameObject);
                 target.HandleHit();
 
-                // 히트 사운드 재생
+                
                 if (audioSource != null && hitSound != null)
                 {
                     audioSource.PlayOneShot(hitSound);
@@ -141,7 +141,7 @@ public class Aimlab_CrosshairController : MonoBehaviour
         }
         else
         {
-            // 미스 사운드 재생
+        
             if (audioSource != null && missSound != null)
             {
                 audioSource.PlayOneShot(missSound);
