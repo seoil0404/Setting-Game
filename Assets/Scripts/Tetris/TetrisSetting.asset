@@ -14,12 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_backgroundMusicScale: 0
   m_effectSoundScale: 0
+  m_minoDropSpeed: 0
   m_isMinoRandom: 0
   m_isMinoGravity: 0
   m_isFloor: 0
   m_minoScore: 0
-  m_minoDropSpeed: 0
   keySetting:
     leftMoveKey: 0
     rightMoveKey: 0
-    jumpKey: 0
+    downKey: 0
+    spinKey: 0

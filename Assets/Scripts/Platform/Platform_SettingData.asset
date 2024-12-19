@@ -23,6 +23,6 @@ MonoBehaviour:
   playerJumpPower: 10
   isPlayerStable: 0
   keySetting:
-    leftMoveKey: 276
-    rightMoveKey: 275
-    jumpKey: 32
+    leftMoveKey: 0
+    rightMoveKey: 0
+    jumpKey: 0

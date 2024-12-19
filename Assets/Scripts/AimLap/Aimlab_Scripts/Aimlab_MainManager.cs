@@ -6,7 +6,7 @@ public class Aimlab_MainManager : MonoBehaviour
 
     public void Starting()
     {
-        SceneManager.LoadScene("PlatformScene");
+        SceneManager.LoadScene("TetrisScene");
     }
 
 
