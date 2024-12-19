@@ -1,4 +1,6 @@
 using UnityEngine;
+using TMPro;
+using System.Collections;
 
 public class Aimlab_CrosshairController : MonoBehaviour
 {
@@ -10,15 +12,29 @@ public class Aimlab_CrosshairController : MonoBehaviour
     [SerializeField] private Aimlab_TargetSpawner targetSpawner;
 
     [Header("Crosshair Settings")]
-    public float length = 1.0f;   
+    public float length = 1.0f;
     private float baseThickness = 0.05f;
-    private float thickness;           
+    private float thickness;
 
     [Header("Target Layer")]
     public LayerMask targetLayer;
 
     private Vector3 crosshairPosition;
     private float crosshairZDepth = 10f;
+
+    [Header("Audio Settings")]
+    public AudioSource audioSource;
+    public AudioClip hitSound;
+    public AudioClip missSound;
+    public AudioClip reloadSound;
+
+    [Header("Ammo Settings")]
+    public int maxAmmo = 10;       // 최대 탄약 수
+    private int currentAmmo = 10;  // 현재 탄약 수
+    private bool isReloading = false;
+
+    [Header("UI Settings")]
+    public TextMeshProUGUI ammoText; // 탄약 수를 표시할 TextMeshProUGUI
 
     void Start()
     {
@@ -27,6 +43,7 @@ public class Aimlab_CrosshairController : MonoBehaviour
 
         crosshairPosition = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, crosshairZDepth));
         UpdateCrosshairLines();
+        UpdateAmmoText(); // 초기 탄약 수 업데이트
     }
 
     void Update()
@@ -44,9 +61,9 @@ public class Aimlab_CrosshairController : MonoBehaviour
 
         UpdateCrosshairLines();
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !isReloading)
         {
-            CheckHit();
+            Shoot();
         }
     }
 
@@ -54,12 +71,10 @@ public class Aimlab_CrosshairController : MonoBehaviour
     {
         thickness = baseThickness * (length / 1.0f);
 
-
         horizontalLine.SetPosition(0, crosshairPosition + new Vector3(-length / 2, 0, 0));
         horizontalLine.SetPosition(1, crosshairPosition + new Vector3(length / 2, 0, 0));
         horizontalLine.startWidth = thickness;
         horizontalLine.endWidth = thickness;
-
 
         verticalLine.SetPosition(0, crosshairPosition + new Vector3(0, -length / 2, 0));
         verticalLine.SetPosition(1, crosshairPosition + new Vector3(0, length / 2, 0));
@@ -73,6 +88,38 @@ public class Aimlab_CrosshairController : MonoBehaviour
         UpdateCrosshairLines();
     }
 
+    void Shoot()
+    {
+        if (currentAmmo > 0)
+        {
+            currentAmmo--;
+            UpdateAmmoText();
+            CheckHit();
+
+            if (currentAmmo == 0)
+            {
+                StartCoroutine(Reload());
+            }
+        }
+    }
+
+    IEnumerator Reload()
+    {
+        isReloading = true;
+
+        // 재장전 소리 재생
+        if (audioSource != null && reloadSound != null)
+        {
+            audioSource.PlayOneShot(reloadSound);
+        }
+
+        yield return new WaitForSeconds(2.0f);
+
+        currentAmmo = maxAmmo;
+        isReloading = false;   
+        UpdateAmmoText();      
+    }
+
     void CheckHit()
     {
         RaycastHit2D hit = Physics2D.Raycast(crosshairPosition, Vector2.zero, 0f, targetLayer);
@@ -84,9 +131,29 @@ public class Aimlab_CrosshairController : MonoBehaviour
             {
                 targetSpawner.TargetClicked(target.gameObject);
                 target.HandleHit();
+
+                // 히트 사운드 재생
+                if (audioSource != null && hitSound != null)
+                {
+                    audioSource.PlayOneShot(hitSound);
+                }
+            }
+        }
+        else
+        {
+            // 미스 사운드 재생
+            if (audioSource != null && missSound != null)
+            {
+                audioSource.PlayOneShot(missSound);
             }
         }
     }
 
-
+    void UpdateAmmoText()
+    {
+        if (ammoText != null)
+        {
+            ammoText.text = $"{currentAmmo} / {maxAmmo}";
+        }
+    }
 }

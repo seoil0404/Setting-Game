@@ -413,7 +413,8 @@ GameObject:
   - component: {fileID: 8917899136744197226}
   - component: {fileID: 4097005869182948530}
   - component: {fileID: -7717021232824501277}
-  m_Layer: 0
+  - component: {fileID: 4328718657272937882}
+  m_Layer: 8
   m_Name: I_Mino
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -473,7 +474,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -1.5495168}
+  m_Offset: {x: 0, y: -1.6907611}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -483,7 +484,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.581269, y: 0.07824159}
+  m_Size: {x: 0.581269, y: 0.36073017}
   m_EdgeRadius: 0
 --- !u!114 &-7717021232824501277
 MonoBehaviour:
@@ -497,8 +498,55 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 604ade6275008ba428618e1cd5a0a6ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SettingData: {fileID: 11400000, guid: f5bc1e173b950e54fa0c0c880d0fc831, type: 2}
   rotationPoint: {x: 0.5, y: 0.5, z: 0}
   fallTime: 0.8
+--- !u!61 &4328718657272937882
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7441932335898501959}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &8256652617898596910
 GameObject:
   m_ObjectHideFlags: 0

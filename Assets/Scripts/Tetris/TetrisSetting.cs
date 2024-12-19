@@ -6,11 +6,12 @@ public class TetrisSetting : ScriptableObject
 {
     [SerializeField] private float m_backgroundMusicScale;
     [SerializeField] private float m_effectSoundScale;
+    [SerializeField] private float m_minoDropSpeed;
+
     [SerializeField] private bool m_isMinoRandom;
     [SerializeField] private bool m_isMinoGravity;
     [SerializeField] private bool m_isFloor;
-    [SerializeField] private int m_minoScore;
-    [SerializeField] private float m_minoDropSpeed;
+    [SerializeField] private bool m_minoScore;
 
 
     public KeySetting keySetting;
@@ -20,7 +21,8 @@ public class TetrisSetting : ScriptableObject
     {
         public KeyCode leftMoveKey;
         public KeyCode rightMoveKey;
-        public KeyCode jumpKey;
+        public KeyCode downKey;
+        public KeyCode spinKey;
     }
 
     public float BackGroundMusicScale
@@ -83,7 +85,7 @@ public class TetrisSetting : ScriptableObject
             m_isFloor = value;
         }
     }
-    public int MinoScore
+    public bool MinoScore
     {
         get
         {

@@ -3,11 +3,14 @@ using UnityEngine;
 
 public class Block : MonoBehaviour
 {
+    [SerializeField] private TetrisSetting SettingData;
     public Vector3 rotationPoint;
     private float previousTime;
     public float fallTime = 0.8f;
     public static int width = 10;
     public static int height = 20;
+
+    
 
     private static Transform[,] grid = new Transform[width, height];
 
@@ -21,7 +24,7 @@ public class Block : MonoBehaviour
     private void Move()
     {
 
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Input.GetKeyDown(SettingData.keySetting.leftMoveKey))
         {
             transform.position += new Vector3(-1, 0, 0);
 
@@ -29,7 +32,7 @@ public class Block : MonoBehaviour
                 transform.position -= new Vector3(-1, 0, 0);
         }
 
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        else if (Input.GetKeyDown(SettingData.keySetting.rightMoveKey))
         {
             transform.position += new Vector3(1, 0, 0);
 
@@ -37,7 +40,7 @@ public class Block : MonoBehaviour
                 transform.position -= new Vector3(1, 0, 0);
         }
 
-        else if (Input.GetKeyDown(KeyCode.UpArrow))
+        else if (Input.GetKeyDown(SettingData.keySetting.spinKey))
         {
             transform.RotateAround(transform.TransformPoint(rotationPoint), new Vector3(0, 0, 1), 90);
             if (!VaildMove())
@@ -49,18 +52,24 @@ public class Block : MonoBehaviour
 
     private void Down()
     {
-        if (Time.time - previousTime > (Input.GetKey(KeyCode.DownArrow) ? fallTime / 10 : fallTime))
+        fallTime = 1 - SettingData.MinoDropSpeed / 10;
+        if (SettingData.IsMinoGravity)
         {
-            transform.position += new Vector3(0, -1, 0);
-            if (!VaildMove())
+
+            if (Time.time - previousTime > (Input.GetKey(SettingData.keySetting.downKey) ? fallTime / 10 : fallTime))
             {
-                transform.position -= new Vector3(0, -1, 0);
-                AddToGrid();
-                CheckForLine();
-                this.enabled = false;
-                Spawn.Instance.NewTetris();
+                transform.position += new Vector3(0, -1, 0);
+                if (!VaildMove() && SettingData.IsFloor)
+                {
+                    transform.position -= new Vector3(0, -1, 0);
+                    AddToGrid();
+                    CheckForLine();
+                    Spawn.Instance.SoundPlay("drop");
+                    this.enabled = false;
+                    Spawn.Instance.NewTetris();
+                }
+                previousTime = Time.time;
             }
-            previousTime = Time.time;
         }
     }
 
@@ -87,6 +96,10 @@ public class Block : MonoBehaviour
 
     private void DeleteLine(int i)
     {
+        if(SettingData.MinoScore)
+        Spawn.Instance.m_deleteLineNum--;
+        Spawn.Instance.SoundPlay("getPoint");
+
         for (int j = 0; j < width; j++)
         {
             Destroy(grid[j, i].gameObject);
