@@ -20,14 +20,12 @@ public class Aimlab_SettingsManager : MonoBehaviour
     public GameObject targetUI;
     public GameObject ammoUI;
 
-    public GameObject gameClearUI; 
+    public GameObject gameClearUI;
 
     public Aimlab_MouseSensitivity mouseSensitivity;
     public Aimlab_CrosshairController crosshairController;
     public Aimlab_TargetSpawner targetSpawner;
     public Aimlab_TargetCounter targetCounter;
-
-    private bool isGamePaused = false;
 
     void Start()
     {
@@ -35,7 +33,7 @@ public class Aimlab_SettingsManager : MonoBehaviour
             settingsPanel.SetActive(false);
 
         if (gameClearUI != null)
-            gameClearUI.SetActive(false); 
+            gameClearUI.SetActive(false);
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -118,23 +116,23 @@ public class Aimlab_SettingsManager : MonoBehaviour
 
     public void ToggleSettings()
     {
-        isGamePaused = !isGamePaused;
+        bool isSettingsPanelActive = settingsPanel.activeSelf;
 
-        if (isGamePaused)
+        if (isSettingsPanelActive)
         {
-            Time.timeScale = 0f;
-            settingsPanel.SetActive(true);
-            if (crosshair != null) crosshair.SetActive(false);
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
-        }
-        else
-        {
-            Time.timeScale = 1f;
+            // 설정창 닫기
             settingsPanel.SetActive(false);
             if (crosshair != null) crosshair.SetActive(true);
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
+        }
+        else
+        {
+            // 설정창 열기
+            settingsPanel.SetActive(true);
+            if (crosshair != null) crosshair.SetActive(false);
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
         }
     }
 
@@ -200,12 +198,16 @@ public class Aimlab_SettingsManager : MonoBehaviour
 
     void GameClear()
     {
-        Time.timeScale = 0f;
-
         if (gameClearUI != null)
         {
             gameClearUI.SetActive(true);
         }
+
+        if (crosshair != null) crosshair.SetActive(false);
+        if (settingsPanel != null) settingsPanel.SetActive(false);
+        if (timerUI != null) timerUI.SetActive(false);
+        if (targetUI != null) targetUI.SetActive(false);
+        if (ammoUI != null) ammoUI.SetActive(false);
 
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
@@ -213,13 +215,11 @@ public class Aimlab_SettingsManager : MonoBehaviour
 
     public void Retry()
     {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name); 
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void ReturnToMenu()
     {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene("MenuScene"); 
+        SceneManager.LoadScene("MainScene");
     }
 }

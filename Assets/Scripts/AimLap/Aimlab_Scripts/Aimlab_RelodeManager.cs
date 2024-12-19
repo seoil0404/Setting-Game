@@ -3,33 +3,33 @@ using UnityEngine;
 
 public class Aimlab_ReloadManager : MonoBehaviour
 {
-    public int maxAmmo = 10;          
-    public float reloadTime = 2.0f;   
-    public AudioSource audioSource;  
-    public AudioClip reloadSound;   
+    public int maxAmmo = 10;
+    public float reloadTime = 2.0f;
+    public AudioSource audioSource;
+    public AudioClip reloadSound;
 
-    private int currentAmmo;         
-    private bool isReloading = false; 
-
+    private int currentAmmo;
+    private bool isReloading = false;
+    public GameObject settingsPanel;
     public delegate void AmmoUpdated(int currentAmmo, int maxAmmo);
     public event AmmoUpdated OnAmmoUpdated;
 
     void Start()
     {
-        currentAmmo = maxAmmo; 
+        currentAmmo = maxAmmo;
         UpdateAmmoUI();
     }
 
     public void Shoot()
     {
-        if (isReloading) return; 
+        if (isReloading) return;
 
         if (currentAmmo > 0)
         {
             currentAmmo--;
             UpdateAmmoUI();
         }
-        else
+        else if (!isReloading)
         {
             StartCoroutine(Reload());
         }
@@ -37,15 +37,25 @@ public class Aimlab_ReloadManager : MonoBehaviour
 
     private IEnumerator Reload()
     {
+        if (isReloading) yield break;
+
         isReloading = true;
 
-       
         if (audioSource != null && reloadSound != null)
         {
             audioSource.PlayOneShot(reloadSound);
         }
 
-        yield return new WaitForSeconds(reloadTime);
+        float elapsedTime = 0f;
+
+        while (elapsedTime < reloadTime)
+        {
+            if (!settingsPanelActive())
+            {
+                elapsedTime += Time.unscaledDeltaTime; 
+            }
+            yield return null;
+        }
 
         currentAmmo = maxAmmo;
         isReloading = false;
@@ -61,5 +71,11 @@ public class Aimlab_ReloadManager : MonoBehaviour
     private void UpdateAmmoUI()
     {
         OnAmmoUpdated?.Invoke(currentAmmo, maxAmmo);
+    }
+
+    private bool settingsPanelActive()
+    {
+   
+        return settingsPanel != null && settingsPanel.activeSelf;
     }
 }

@@ -1303,7 +1303,7 @@ RectTransform:
   m_GameObject: {fileID: 400823827}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 90}
-  m_LocalScale: {x: 0.015873015, y: 0.015873015, z: 0.022222223}
+  m_LocalScale: {x: 0.015873015, y: 0.015873015, z: -6}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 214762120}
@@ -1311,7 +1311,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.15, y: -1.35}
+  m_AnchoredPosition: {x: 0.1500001, y: -1.3499985}
   m_SizeDelta: {x: 178, y: 37}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &400823829
@@ -1547,7 +1547,7 @@ RectTransform:
   m_GameObject: {fileID: 439288120}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 90}
-  m_LocalScale: {x: 0.015873015, y: 0.015873015, z: 0.022222223}
+  m_LocalScale: {x: 0.015873015, y: 0.015873015, z: -6}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2104307410}
@@ -1555,7 +1555,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.04, y: -1.35}
+  m_AnchoredPosition: {x: -0.0400002, y: -1.3500061}
   m_SizeDelta: {x: 178, y: 37}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &439288122
@@ -3233,7 +3233,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &1096988592
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3587,7 +3587,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1180599080
 Transform:
   m_ObjectHideFlags: 0
@@ -3888,6 +3888,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1280617386}
   m_CullTransparentMesh: 1
+--- !u!1 &1302259879
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1302259880}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1302259880
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1302259879}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.303455, y: -1.5596976, z: -7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1311460139
 GameObject:
   m_ObjectHideFlags: 0
@@ -4111,12 +4142,12 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1180599080}
+  - {fileID: 1371399651}
   - {fileID: 1890345637}
   - {fileID: 1096988593}
   - {fileID: 1446873212}
   - {fileID: 827839048}
-  - {fileID: 1371399651}
-  - {fileID: 1180599080}
   - {fileID: 1669855885}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4141,7 +4172,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1371399651
 Transform:
   m_ObjectHideFlags: 0
@@ -4151,7 +4182,7 @@ Transform:
   m_GameObject: {fileID: 1371399650}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -13.375244, y: 6.2246246, z: -0.00034332275}
+  m_LocalPosition: {x: -13.375244, y: 6.2246246, z: 0}
   m_LocalScale: {x: 63, y: 63, z: 45}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4694,7 +4725,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &1446873211
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5214,6 +5245,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerText: {fileID: 515801805}
   gameOverUI: {fileID: 1180599079}
+  crosshair: {fileID: 0}
 --- !u!4 &1539450609
 Transform:
   m_ObjectHideFlags: 0
@@ -5223,7 +5255,7 @@ Transform:
   m_GameObject: {fileID: 1539450607}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.759738, y: -3.397697, z: 61.663986}
+  m_LocalPosition: {x: -5.759738, y: -3.397697, z: 100}
   m_LocalScale: {x: 0.85902137, y: 0.9360046, z: 0.6851554}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5479,11 +5511,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3174460713239325113, guid: b58a89b44cdce1e4d8eaaf3da946fa72, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 211.18
+      value: 190.18
       objectReference: {fileID: 0}
     - target: {fileID: 3174460713239325113, guid: b58a89b44cdce1e4d8eaaf3da946fa72, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 44.850006
+      value: 39.02
       objectReference: {fileID: 0}
     - target: {fileID: 3174460713239325113, guid: b58a89b44cdce1e4d8eaaf3da946fa72, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5515,11 +5547,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3174460713239325113, guid: b58a89b44cdce1e4d8eaaf3da946fa72, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 128
+      value: 100.5
       objectReference: {fileID: 0}
     - target: {fileID: 3174460713239325113, guid: b58a89b44cdce1e4d8eaaf3da946fa72, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 36
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 3174460713239325113, guid: b58a89b44cdce1e4d8eaaf3da946fa72, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -6220,7 +6252,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &1890345636
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7136,3 +7168,4 @@ SceneRoots:
   - {fileID: 783388354}
   - {fileID: 1311460141}
   - {fileID: 739940680}
+  - {fileID: 1302259880}

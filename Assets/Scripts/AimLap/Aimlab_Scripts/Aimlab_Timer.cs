@@ -3,11 +3,17 @@ using TMPro;
 
 public class Aimlab_Timer : MonoBehaviour
 {
-    public TMP_Text timerText;       
-    public GameObject gameOverUI;     
-    private float timeLeft = 60f;    
+    public TMP_Text timerText;
+    public GameObject settingsPanel;
+    public GameObject gameOverUI;    
+    public GameObject crosshair;
+    public GameObject timerUI;
+    public GameObject targetUI;
+    public GameObject ammoUI;
+    public GameObject gameClearUI;
+    private float timeLeft = 60f;     
     private bool timerRunning = true;  
-    private bool isGameOver = false;   
+    private bool isGameOver = false;    
 
     void Start()
     {
@@ -27,9 +33,9 @@ public class Aimlab_Timer : MonoBehaviour
 
             if (timeLeft <= 0)
             {
-                timeLeft = 0;          
+                timeLeft = 0;         
                 timerRunning = false; 
-                OnTimerEnd();       
+                OnTimerEnd();         
             }
 
             UpdateTimerText();
@@ -46,12 +52,25 @@ public class Aimlab_Timer : MonoBehaviour
     {
         
         isGameOver = true;
-        Time.timeScale = 0f; 
+        Time.timeScale = 0f;
 
+ 
         if (gameOverUI != null)
         {
             gameOverUI.SetActive(true);
         }
+
+        if (crosshair != null)
+        {
+            crosshair.SetActive(false);
+        }
+
+        
+        if (crosshair != null) crosshair.SetActive(false);
+        if (settingsPanel != null) settingsPanel.SetActive(false);
+        if (timerUI != null) timerUI.SetActive(false);
+        if (targetUI != null) targetUI.SetActive(false);
+        if (ammoUI != null) ammoUI.SetActive(false);
 
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
@@ -59,17 +78,23 @@ public class Aimlab_Timer : MonoBehaviour
         Debug.Log("Game Over: Timer Ended");
     }
 
+
     public void Retry()
     {
- 
+       
         Time.timeScale = 1f;  
-        isGameOver = false;    
-        timerRunning = true;  
-        timeLeft = 60f;        
+        isGameOver = false;   
+        timerRunning = true;   
+        timeLeft = 60f;       
 
         if (gameOverUI != null)
         {
-            gameOverUI.SetActive(false); 
+            gameOverUI.SetActive(false);
+        }
+
+        if (crosshair != null)
+        {
+            crosshair.SetActive(true);
         }
 
         Cursor.visible = false;
