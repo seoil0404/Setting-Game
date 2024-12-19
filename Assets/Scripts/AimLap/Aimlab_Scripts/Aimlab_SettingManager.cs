@@ -20,12 +20,12 @@ public class Aimlab_SettingsManager : MonoBehaviour
     public GameObject targetUI;
     public GameObject ammoUI;
 
-    public GameObject gameClearUI; // 게임 클리어 UI 추가
+    public GameObject gameClearUI; // 게임 클리어 UI
 
     public Aimlab_MouseSensitivity mouseSensitivity;
     public Aimlab_CrosshairController crosshairController;
     public Aimlab_TargetSpawner targetSpawner;
-    public Aimlab_TargetCounter targetCounter; // 타겟 카운터 참조
+    public Aimlab_TargetCounter targetCounter;
 
     private bool isGamePaused = false;
 
@@ -40,20 +40,18 @@ public class Aimlab_SettingsManager : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
-        // 각 UI 설정
         InitializeSliders();
         InitializeToggles();
     }
 
     void Update()
     {
+        CheckGameClear();
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             ToggleSettings();
         }
-
-        // 게임 클리어 체크
-        CheckGameClear();
     }
 
     void InitializeSliders()
@@ -213,9 +211,15 @@ public class Aimlab_SettingsManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
     }
 
+    public void Retry()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name); // 현재 씬 다시 로드
+    }
+
     public void ReturnToMenu()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("MenuScene"); 
+        SceneManager.LoadScene("MenuScene"); // 메뉴 씬으로 이동
     }
 }
