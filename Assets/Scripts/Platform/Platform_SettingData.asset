@@ -12,16 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b7383bdeb88dc241b1283cf619c5ea3, type: 3}
   m_Name: Platform_SettingData
   m_EditorClassIdentifier: 
-  backgroundMusicScale: 0
-  effectSoundScale: 0
-  isInvincible: 0
-  playerMoveSpeed: 5
-  isGravity: 1
+  backgroundMusicScale: 5
+  effectSoundScale: 5
+  playerMoveSpeed: 0.1
+  isGravity: 0
   isCameraFollow: 0
-  isGoalRun: 0
-  isSinkholeGenerate: 0
+  isGoalRun: 1
+  isSinkholeGenerate: 1
   isPlayerCanAttack: 0
-  playerJumpPower: 5
+  playerJumpPower: 10
+  isPlayerStable: 0
   keySetting:
     leftMoveKey: 276
     rightMoveKey: 275
