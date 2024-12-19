@@ -64,6 +64,7 @@ public class Block : MonoBehaviour
                     transform.position -= new Vector3(0, -1, 0);
                     AddToGrid();
                     CheckForLine();
+                    Spawn.Instance.SoundPlay("drop");
                     this.enabled = false;
                     Spawn.Instance.NewTetris();
                 }
@@ -96,7 +97,8 @@ public class Block : MonoBehaviour
     private void DeleteLine(int i)
     {
         if(SettingData.MinoScore)
-        Spawn.Instance.m_deleteLineNum++;
+        Spawn.Instance.m_deleteLineNum--;
+        Spawn.Instance.SoundPlay("getPoint");
 
         for (int j = 0; j < width; j++)
         {

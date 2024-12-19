@@ -1,16 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Spawn : MonoBehaviour
 {
     [SerializeField] private TetrisSetting SettingData;
+    [SerializeField] private TextMeshProUGUI m_lineNumText;
+    [SerializeField] private GameObject m_clearUi;
 
     public GameObject[] Tetris;
     public int m_deleteLineNum;
     public static Spawn Instance;
-
+    [SerializeField] private AudioSource m_clearSound;
+    [SerializeField] private AudioSource m_getPointSound;
+    [SerializeField] private AudioSource m_dropSound;
+    [SerializeField] private AudioSource m_bgm;
+    bool clear = false;
     private void Awake()
     {
         if (Instance == null)
@@ -26,6 +33,8 @@ public class Spawn : MonoBehaviour
     void Start()
     {
         NewTetris();
+        m_bgm.Play();
+
     }
 
     public void NewTetris()
@@ -36,13 +45,49 @@ public class Spawn : MonoBehaviour
             Instantiate(Tetris[0], transform.position, Quaternion.identity);
     }
 
+    private void LineNumUiUpdate()
+    {
+        m_lineNumText.text = m_deleteLineNum.ToString();
+    }
+
     public void Restart()
     {
         SceneManager.LoadScene("TetrisScene");
     }
-    // Update is called once per frame
+
+    public void Clear()
+    {
+        if(m_deleteLineNum <= 0 && !clear)
+        {
+        m_clearUi.SetActive(true);
+            clear = true;
+            SoundPlay("clear");
+        }
+    }
+
+    public void ClearUi()
+    {
+        SceneManager.LoadScene("PlatformScene");
+    }
+
+    public void SoundPlay(string name)
+    {
+        m_clearSound.volume = SettingData.EffectSoundScale / 10;
+        m_getPointSound.volume = SettingData.EffectSoundScale / 10;
+        m_dropSound.volume = SettingData.EffectSoundScale / 10;
+        switch (name)
+        {
+            case "drop": m_dropSound.Play(); break;
+            case "getPoint": m_getPointSound.Play(); break;
+            case "clear": m_clearSound.Play(); break;
+        }
+    }
+
     void Update()
     {
+        LineNumUiUpdate();
+        Clear();
+        m_bgm.volume = SettingData.BackGroundMusicScale / 10;
 
     }
 }
