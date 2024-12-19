@@ -12,12 +12,14 @@ public class Spawn : MonoBehaviour
 
     public GameObject[] Tetris;
     public int m_deleteLineNum;
-    public static Spawn Instance;
     [SerializeField] private AudioSource m_clearSound;
     [SerializeField] private AudioSource m_getPointSound;
     [SerializeField] private AudioSource m_dropSound;
     [SerializeField] private AudioSource m_bgm;
     bool clear = false;
+
+    public static Spawn Instance;
+
     private void Awake()
     {
         if (Instance == null)
@@ -29,7 +31,7 @@ public class Spawn : MonoBehaviour
             Destroy(gameObject); // 중복 방지
         }
     }
-    // Start is called before the first frame update
+
     void Start()
     {
         NewTetris();
