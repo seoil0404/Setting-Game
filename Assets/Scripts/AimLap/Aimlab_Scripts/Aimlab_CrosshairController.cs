@@ -1,4 +1,6 @@
 using UnityEngine;
+using TMPro;
+using System.Collections;
 
 public class Aimlab_CrosshairController : MonoBehaviour
 {
@@ -21,9 +23,18 @@ public class Aimlab_CrosshairController : MonoBehaviour
     private float crosshairZDepth = 10f;
 
     [Header("Audio Settings")]
-    public AudioSource audioSource;  
-    public AudioClip hitSound;      
-    public AudioClip missSound;      
+    public AudioSource audioSource;
+    public AudioClip hitSound;
+    public AudioClip missSound;
+    public AudioClip reloadSound;
+
+    [Header("Ammo Settings")]
+    public int maxAmmo = 10;       // 최대 탄약 수
+    private int currentAmmo = 10;  // 현재 탄약 수
+    private bool isReloading = false;
+
+    [Header("UI Settings")]
+    public TextMeshProUGUI ammoText; // 탄약 수를 표시할 TextMeshProUGUI
 
     void Start()
     {
@@ -32,6 +43,7 @@ public class Aimlab_CrosshairController : MonoBehaviour
 
         crosshairPosition = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, crosshairZDepth));
         UpdateCrosshairLines();
+        UpdateAmmoText(); // 초기 탄약 수 업데이트
     }
 
     void Update()
@@ -49,9 +61,9 @@ public class Aimlab_CrosshairController : MonoBehaviour
 
         UpdateCrosshairLines();
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !isReloading)
         {
-            CheckHit();
+            Shoot();
         }
     }
 
@@ -74,6 +86,38 @@ public class Aimlab_CrosshairController : MonoBehaviour
     {
         length = newLength;
         UpdateCrosshairLines();
+    }
+
+    void Shoot()
+    {
+        if (currentAmmo > 0)
+        {
+            currentAmmo--;
+            UpdateAmmoText();
+            CheckHit();
+
+            if (currentAmmo == 0)
+            {
+                StartCoroutine(Reload());
+            }
+        }
+    }
+
+    IEnumerator Reload()
+    {
+        isReloading = true;
+
+        // 재장전 소리 재생
+        if (audioSource != null && reloadSound != null)
+        {
+            audioSource.PlayOneShot(reloadSound);
+        }
+
+        yield return new WaitForSeconds(2.0f);
+
+        currentAmmo = maxAmmo;
+        isReloading = false;   
+        UpdateAmmoText();      
     }
 
     void CheckHit()
@@ -102,6 +146,14 @@ public class Aimlab_CrosshairController : MonoBehaviour
             {
                 audioSource.PlayOneShot(missSound);
             }
+        }
+    }
+
+    void UpdateAmmoText()
+    {
+        if (ammoText != null)
+        {
+            ammoText.text = $"{currentAmmo} / {maxAmmo}";
         }
     }
 }

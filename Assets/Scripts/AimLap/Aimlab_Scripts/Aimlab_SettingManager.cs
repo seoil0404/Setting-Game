@@ -1,19 +1,31 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Aimlab_SettingsManager : MonoBehaviour
 {
-    public GameObject settingsPanel; 
-    public GameObject crosshair;     
-    public Slider sensitivitySlider;  
-    public Slider crosshairSizeSlider; 
-    public Slider targetSizeSlider;   
-    public Slider targetSpeedSlider;   
+    public GameObject settingsPanel;
+    public GameObject crosshair;
+    public Slider sensitivitySlider;
+    public Slider crosshairSizeSlider;
+    public Slider targetSizeSlider;
+    public Slider targetSpeedSlider;
     public Toggle targetMovementToggle;
 
-    public Aimlab_MouseSensitivity mouseSensitivity;       
-    public Aimlab_CrosshairController crosshairController; 
-    public Aimlab_TargetSpawner targetSpawner;            
+    public Toggle timerUIToggle;
+    public Toggle targetUIToggle;
+    public Toggle ammoUIToggle;
+
+    public GameObject timerUI;
+    public GameObject targetUI;
+    public GameObject ammoUI;
+
+    public GameObject gameClearUI; // 게임 클리어 UI 추가
+
+    public Aimlab_MouseSensitivity mouseSensitivity;
+    public Aimlab_CrosshairController crosshairController;
+    public Aimlab_TargetSpawner targetSpawner;
+    public Aimlab_TargetCounter targetCounter; // 타겟 카운터 참조
 
     private bool isGamePaused = false;
 
@@ -22,10 +34,30 @@ public class Aimlab_SettingsManager : MonoBehaviour
         if (settingsPanel != null)
             settingsPanel.SetActive(false);
 
+        if (gameClearUI != null)
+            gameClearUI.SetActive(false); // 게임 클리어 UI 비활성화
+
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
-  
+        // 각 UI 설정
+        InitializeSliders();
+        InitializeToggles();
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ToggleSettings();
+        }
+
+        // 게임 클리어 체크
+        CheckGameClear();
+    }
+
+    void InitializeSliders()
+    {
         if (sensitivitySlider != null)
         {
             sensitivitySlider.minValue = 0.01f;
@@ -42,7 +74,6 @@ public class Aimlab_SettingsManager : MonoBehaviour
             crosshairSizeSlider.onValueChanged.AddListener(UpdateCrosshairSize);
         }
 
-
         if (targetSizeSlider != null)
         {
             targetSizeSlider.minValue = 0.2f;
@@ -51,7 +82,6 @@ public class Aimlab_SettingsManager : MonoBehaviour
             targetSizeSlider.onValueChanged.AddListener(UpdateTargetSize);
         }
 
-        
         if (targetSpeedSlider != null)
         {
             targetSpeedSlider.minValue = 0.1f;
@@ -59,25 +89,32 @@ public class Aimlab_SettingsManager : MonoBehaviour
             targetSpeedSlider.value = targetSpawner.spawnInterval;
             targetSpeedSlider.onValueChanged.AddListener(UpdateTargetSpeed);
         }
+    }
 
-        
+    void InitializeToggles()
+    {
         if (targetMovementToggle != null)
         {
             targetMovementToggle.isOn = targetSpawner.isMovementEnabled;
             targetMovementToggle.onValueChanged.AddListener(UpdateTargetMovement);
         }
 
-        if (crosshair != null)
+        if (timerUIToggle != null && timerUI != null)
         {
-            crosshair.SetActive(true);
+            timerUIToggle.isOn = timerUI.activeSelf;
+            timerUIToggle.onValueChanged.AddListener(UpdateTimerUI);
         }
-    }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (targetUIToggle != null && targetUI != null)
         {
-            ToggleSettings();
+            targetUIToggle.isOn = targetUI.activeSelf;
+            targetUIToggle.onValueChanged.AddListener(UpdateTargetUI);
+        }
+
+        if (ammoUIToggle != null && ammoUI != null)
+        {
+            ammoUIToggle.isOn = ammoUI.activeSelf;
+            ammoUIToggle.onValueChanged.AddListener(UpdateAmmoUI);
         }
     }
 
@@ -111,7 +148,6 @@ public class Aimlab_SettingsManager : MonoBehaviour
         mouseSensitivity.sensitivity = roundedValue;
     }
 
-
     void UpdateCrosshairSize(float value)
     {
         crosshairController.SetCrosshairSize(value);
@@ -130,5 +166,56 @@ public class Aimlab_SettingsManager : MonoBehaviour
     void UpdateTargetMovement(bool isEnabled)
     {
         targetSpawner.isMovementEnabled = isEnabled;
+    }
+
+    void UpdateTimerUI(bool isEnabled)
+    {
+        if (timerUI != null)
+        {
+            timerUI.SetActive(isEnabled);
+        }
+    }
+
+    void UpdateTargetUI(bool isEnabled)
+    {
+        if (targetUI != null)
+        {
+            targetUI.SetActive(isEnabled);
+        }
+    }
+
+    void UpdateAmmoUI(bool isEnabled)
+    {
+        if (ammoUI != null)
+        {
+            ammoUI.SetActive(isEnabled);
+        }
+    }
+
+    void CheckGameClear()
+    {
+        if (targetCounter != null && targetCounter.IsTargetMaxReached())
+        {
+            GameClear();
+        }
+    }
+
+    void GameClear()
+    {
+        Time.timeScale = 0f;
+
+        if (gameClearUI != null)
+        {
+            gameClearUI.SetActive(true);
+        }
+
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+    public void ReturnToMenu()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("MenuScene"); 
     }
 }
