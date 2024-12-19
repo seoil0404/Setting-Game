@@ -25,10 +25,4 @@ public class Aimlab_TargetCounter : MonoBehaviour
     {
         targetCounterText.text = currentCount + " / " + maxTargets;
     }
-
-  
-    public bool IsTargetMaxReached()
-    {
-        return currentCount >= maxTargets;
-    }
 }
