@@ -10,15 +10,20 @@ public class Aimlab_CrosshairController : MonoBehaviour
     [SerializeField] private Aimlab_TargetSpawner targetSpawner;
 
     [Header("Crosshair Settings")]
-    public float length = 1.0f;   
+    public float length = 1.0f;
     private float baseThickness = 0.05f;
-    private float thickness;           
+    private float thickness;
 
     [Header("Target Layer")]
     public LayerMask targetLayer;
 
     private Vector3 crosshairPosition;
     private float crosshairZDepth = 10f;
+
+    [Header("Audio Settings")]
+    public AudioSource audioSource;  
+    public AudioClip hitSound;      
+    public AudioClip missSound;      
 
     void Start()
     {
@@ -54,12 +59,10 @@ public class Aimlab_CrosshairController : MonoBehaviour
     {
         thickness = baseThickness * (length / 1.0f);
 
-
         horizontalLine.SetPosition(0, crosshairPosition + new Vector3(-length / 2, 0, 0));
         horizontalLine.SetPosition(1, crosshairPosition + new Vector3(length / 2, 0, 0));
         horizontalLine.startWidth = thickness;
         horizontalLine.endWidth = thickness;
-
 
         verticalLine.SetPosition(0, crosshairPosition + new Vector3(0, -length / 2, 0));
         verticalLine.SetPosition(1, crosshairPosition + new Vector3(0, length / 2, 0));
@@ -84,9 +87,21 @@ public class Aimlab_CrosshairController : MonoBehaviour
             {
                 targetSpawner.TargetClicked(target.gameObject);
                 target.HandleHit();
+
+                // 히트 사운드 재생
+                if (audioSource != null && hitSound != null)
+                {
+                    audioSource.PlayOneShot(hitSound);
+                }
+            }
+        }
+        else
+        {
+            // 미스 사운드 재생
+            if (audioSource != null && missSound != null)
+            {
+                audioSource.PlayOneShot(missSound);
             }
         }
     }
-
-
 }
