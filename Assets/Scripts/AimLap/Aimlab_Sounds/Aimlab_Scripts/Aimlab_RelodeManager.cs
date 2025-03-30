@@ -78,4 +78,16 @@ public class Aimlab_ReloadManager : MonoBehaviour
    
         return settingsPanel != null && settingsPanel.activeSelf;
     }
+
+
+    public void EnsureReloadContinues()
+    {
+        if (isReloading)
+        {
+            StopAllCoroutines();
+            StartCoroutine(Reload()); 
+        }
+    }
+
+
 }

@@ -120,7 +120,7 @@ public class Aimlab_SettingsManager : MonoBehaviour
 
         if (isSettingsPanelActive)
         {
-            // 설정창 닫기
+          
             settingsPanel.SetActive(false);
             if (crosshair != null) crosshair.SetActive(true);
             Cursor.visible = false;
@@ -128,13 +128,22 @@ public class Aimlab_SettingsManager : MonoBehaviour
         }
         else
         {
-            // 설정창 열기
+           
             settingsPanel.SetActive(true);
             if (crosshair != null) crosshair.SetActive(false);
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
         }
+
+        Aimlab_ReloadManager reloadManager = Object.FindFirstObjectByType<Aimlab_ReloadManager>();
+        if (reloadManager != null)
+        {
+            reloadManager.EnsureReloadContinues();
+        }
     }
+
+
+
 
     void UpdateSensitivity(float value)
     {
